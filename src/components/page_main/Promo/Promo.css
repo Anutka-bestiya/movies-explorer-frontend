@@ -1,0 +1,16 @@
+.promo {
+  min-height: 524px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3c1f8;
+}
+
+.promo__title {
+  max-width: 730px;
+  text-align: center;
+}
+
+.promo__image {
+  position: absolute;
+}

@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-
 import Header from '../Header/Header';
 // import Login from '../Login/Login';
 // import Register from '../Register/Register';
-// import Main from '../Main/Main';
+import Main from '../Main/Main';
 // import Footer from '.,/Footer/Footer';
 // import Profile from '../Profile/Profile';
 // import Movies from '../Movies/Movies';
@@ -23,16 +23,17 @@ function App() {
 
   return (
     // <LoggedInContext.Provider value={isLoggedIn}>
-    <div className="App">
+    <div className="App page">
       <Header />
+      <Main />
       <Routes>
         <Route
           path="*"
           element={isLoggedIn ? <Navigate to="/" replace /> : <Navigate to="/signin" replace />}
         />
-        {/* <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/" element={<Main />} /> */}
+        {/* <Route path="/signin" element={<Login />} /> */}
+        {/* <Route path="/signup" element={<Register />} /> */}
+        {/* <Route path="/" element={<Main />} /> */}
         {/* <Route path="/profile" element={<Profile />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/saved-movies" element={<SavedMovies />} />

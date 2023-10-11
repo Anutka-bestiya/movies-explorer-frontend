@@ -1,0 +1,19 @@
+.nav-tab {
+  background-color: #000;
+}
+
+.nav-tab__items {
+  min-height: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-tab__item {
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 16px;
+  text-decoration: underline;
+}

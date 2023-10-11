@@ -1,14 +1,41 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   min-height: 74px;
-  margin: 18px 70px;
-  /* margin-top: 45px; */
 }
 
 .header_theme_pink {
   background-color: #f3c1f8;
+}
+
+.header__nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__profile {
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.header__icon-profile {
+  margin-left: 13px;
+}
+
+.header__reg-link {
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.header__nav-button {
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
 }
 
 @media (max-width: 879px) {

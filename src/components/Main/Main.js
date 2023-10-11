@@ -1,4 +1,8 @@
 import React from 'react';
+import Promo from '../page_main/Promo/Promo';
+import NavTab from '../page_main/NavTab/NavTab';
+import AboutProject from '../page_main/AboutProject/AboutProject';
+import Techs from '../page_main/Techs/Techs';
 
 function Main(
   {
@@ -13,7 +17,12 @@ function Main(
 ) {
   return (
     <main>
-      <section className="profile section"></section>
+      {/* <Promo /> */}
+      <NavTab />
+      <AboutProject />
+      <Techs />
     </main>
   );
 }
+
+export default Main;

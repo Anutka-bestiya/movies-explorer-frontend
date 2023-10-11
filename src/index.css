@@ -1,23 +1,33 @@
-/* @import url(./vendor/normalize.css); */
+@import url(./vendor/normalize.css);
 /*fonts*/
-/* @import url(./vendor/fonts.css); */
+@import url(./vendor/fonts.css);
 /*body*/
+@import url(./components/App/App.css);
+
 /*blocks*/
+@import url(./blocks/section/section.css);
+@import url(./blocks/section-title/section-title.css);
 
 /*button*/
+@import url(./blocks/button/button.css);
+@import url(./blocks/button/_theme/button_theme_black.css);
 
 /*text-blocks*/
 @import url(./blocks/sr-only/sr-only.css);
 @import url(./blocks/link/link.css);
-/* @import url(./blocks/text/text.css); */
-/* @import url(./blocks/title/title.css); */
+@import url(./blocks/text/text.css);
+@import url(./blocks/title/title.css);
 
 /*секция header*/
 @import url(./components/Header/Header.css);
-/* @import url(./blocks/header/header.css);
-@import url(./blocks/header/__link/header__link.css);
-@import url(./blocks/header/__nav/header__nav.css); */
 
 /*footer*/
 /* @import url(./blocks/footer/footer.css); */
 /* @import url(./blocks/footer/__copyright/footer__copyright.css); */
+
+/*Main*/
+@import url(./components/Main/Main.css);
+@import url(./components/page_main/Promo/Promo.css);
+@import url(./components/page_main/NavTab/NavTab.css);
+@import url(./components/page_main/AboutProject/AboutProject.css);
+@import url(./components/page_main/Techs/Techs.css);
