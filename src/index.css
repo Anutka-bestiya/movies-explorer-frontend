@@ -22,8 +22,7 @@
 @import url(./components/Header/Header.css);
 
 /*footer*/
-/* @import url(./blocks/footer/footer.css); */
-/* @import url(./blocks/footer/__copyright/footer__copyright.css); */
+@import url(./components/Footer/Footer.css);
 
 /*Main*/
 @import url(./components/Main/Main.css);
@@ -31,3 +30,5 @@
 @import url(./components/page_main/NavTab/NavTab.css);
 @import url(./components/page_main/AboutProject/AboutProject.css);
 @import url(./components/page_main/Techs/Techs.css);
+@import url(./components/page_main/AboutMe/AboutMe.css);
+@import url(./components/page_main/Portfolio/Portfolio.css);

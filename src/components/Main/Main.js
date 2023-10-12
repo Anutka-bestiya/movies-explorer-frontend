@@ -3,6 +3,8 @@ import Promo from '../page_main/Promo/Promo';
 import NavTab from '../page_main/NavTab/NavTab';
 import AboutProject from '../page_main/AboutProject/AboutProject';
 import Techs from '../page_main/Techs/Techs';
+import AboutMe from '../page_main/AboutMe/AboutMe';
+import Portfolio from '../page_main/Portfolio/Portfolio';
 
 function Main(
   {
@@ -17,10 +19,12 @@ function Main(
 ) {
   return (
     <main>
-      {/* <Promo /> */}
+      <Promo />
       <NavTab />
       <AboutProject />
       <Techs />
+      <AboutMe />
+      <Portfolio />
     </main>
   );
 }

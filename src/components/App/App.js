@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 // import Login from '../Login/Login';
 // import Register from '../Register/Register';
 import Main from '../Main/Main';
-// import Footer from '.,/Footer/Footer';
+import Footer from '../Footer/Footer';
 // import Profile from '../Profile/Profile';
 // import Movies from '../Movies/Movies';
 // import SavedMovies from '../SavedMovies/SavedMovies';
@@ -25,21 +25,20 @@ function App() {
     // <LoggedInContext.Provider value={isLoggedIn}>
     <div className="App page">
       <Header />
-      <Main />
       <Routes>
         <Route
           path="*"
-          element={isLoggedIn ? <Navigate to="/" replace /> : <Navigate to="/signin" replace />}
+          element={!isLoggedIn ? <Navigate to="/" replace /> : <Navigate to="/signin" replace />}
         />
         {/* <Route path="/signin" element={<Login />} /> */}
         {/* <Route path="/signup" element={<Register />} /> */}
-        {/* <Route path="/" element={<Main />} /> */}
+        <Route path="/" element={<Main />} />
         {/* <Route path="/profile" element={<Profile />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/saved-movies" element={<SavedMovies />} />
         <Route path="*" element={<NotFound />} /> */}
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
     // </LoggedInContext.Provider>
   );
