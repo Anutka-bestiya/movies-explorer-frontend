@@ -1,31 +1,38 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Footer() {
+  const location = useLocation();
+
   return (
-    <footer className="footer section">
-      <h2 className="section-title footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
-      <div className="footer__columns">
-        <p className="text footer__copyright">© {new Date().getFullYear()} Anutka_bestiya</p>
-        <div className="footer__social-icon">
-          <a
-            href="https://practicum.yandex.ru/"
-            className="link text footer__link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Яндекс.Практикум
-          </a>
-          <a
-            href="https://github.com/"
-            className="link text footer__link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Github
-          </a>
+    (location.pathname === '/' ||
+      location.pathname === '/movies' ||
+      location.pathname === '/saved-movies') && (
+      <footer className="footer section">
+        <h2 className="section-title footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
+        <div className="footer__columns">
+          <p className="text footer__copyright">© {new Date().getFullYear()} Anutka_bestiya</p>
+          <div className="footer__social-icon">
+            <a
+              href="https://practicum.yandex.ru/"
+              className="link text footer__link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Яндекс.Практикум
+            </a>
+            <a
+              href="https://github.com/"
+              className="link text footer__link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Github
+            </a>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    )
   );
 }
 export default Footer;

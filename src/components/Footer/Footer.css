@@ -10,10 +10,11 @@
   color: #a0a0a0;
   border-color: #e8e8e8;
   letter-spacing: normal;
+  padding-bottom: 20px;
 }
 
 .footer__columns {
-  margin-top: 16px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
 }
@@ -29,4 +30,32 @@
 
 .footer__link {
   font-size: 13px;
+}
+
+@media (max-width: 992px) {
+  .footer {
+    padding: 84px 30px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer__title,
+  .footer__copyright,
+  .footer__link {
+    font-size: 12px;
+  }
+
+  .footer__columns {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+
+  .footer__social-icon {
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
 }

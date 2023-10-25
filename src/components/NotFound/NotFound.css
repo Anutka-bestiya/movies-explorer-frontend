@@ -1,0 +1,38 @@
+/* layout */
+.not-found {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.not-found__title {
+  margin-top: auto;
+  font-size: 140px;
+  line-height: 1.21;
+  letter-spacing: normal;
+}
+
+.not-found__text {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.not-found__button {
+  margin-top: auto;
+  background-color: #fff;
+  border: none;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 576px) {
+  .not-found__title {
+    font-size: 80px;
+  }
+  .not-found__text {
+    font-size: 12px;
+  }
+  .not-found__button {
+    font-size: 12px;
+  }
+}

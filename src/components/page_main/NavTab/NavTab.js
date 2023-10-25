@@ -2,7 +2,7 @@ import React from 'react';
 
 function NavTab() {
   return (
-    <section className="nav-tab section">
+    <section className="nav-tab section" aria-label="Навигация">
       <nav className="nav-tab__items">
         <a href="/#about-project" className="link text nav-tab__item">
           О проекте

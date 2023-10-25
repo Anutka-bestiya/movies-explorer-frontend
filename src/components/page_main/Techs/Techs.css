@@ -13,11 +13,11 @@
 }
 
 .techs__text {
+  margin: 0 auto;
   margin-top: 26px;
   text-align: center;
   line-height: 20px;
-  padding-left: 340px;
-  padding-right: 340px;
+  max-width: 460px;
   letter-spacing: -0.04em;
 }
 
@@ -29,6 +29,8 @@
   margin: 0;
   padding: 0;
   margin-top: 100px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .techs__item {
@@ -42,4 +44,52 @@
   text-align: center;
   padding-top: 21px;
   box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+  .techs {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .techs__subtitle {
+    margin-top: 80px;
+  }
+
+  .techs__text {
+    margin-top: 20px;
+  }
+
+  .techs__items {
+    margin-top: 83px;
+  }
+
+  .techs__item {
+    width: 84px;
+    height: 57px;
+  }
+}
+
+@media (max-width: 576px) {
+  .techs {
+    padding: 66px 18px 70px;
+  }
+
+  .techs__subtitle {
+    margin-top: 78px;
+    font-size: 30px;
+    line-height: 1.21px;
+  }
+  .techs__text {
+    margin-top: 40px;
+    line-height: 16px;
+  }
+  .techs__items {
+    padding: 0 20px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+  }
+  .techs__item {
+    font-size: 12px;
+  }
 }

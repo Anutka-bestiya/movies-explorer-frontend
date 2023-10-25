@@ -1,0 +1,7 @@
+const SCREEN_SM = 576;
+const SCREEN_MD = 768;
+const SCREEN_LG = 992;
+const SCREEN_XL = 1200;
+const SCREEN_XXL = 1400;
+
+export { SCREEN_SM, SCREEN_MD, SCREEN_LG, SCREEN_XL, SCREEN_XXL };

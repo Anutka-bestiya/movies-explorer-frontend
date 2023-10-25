@@ -13,8 +13,17 @@
 .nav-tab__item {
   color: #fff;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 16px;
   text-decoration: underline;
-  letter-spacing: -0.07em;
+}
+
+@media (max-width: 576px) {
+  .nav-tab__items {
+    gap: 24px;
+  }
+
+  .nav-tab__item {
+    font-size: 11px;
+  }
 }

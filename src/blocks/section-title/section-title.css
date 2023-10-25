@@ -10,9 +10,9 @@
   padding-bottom: 22px;
   border-bottom: 1px solid #000;
 }
-@media (max-width: 879px) {
+@media (max-width: 576px) {
   .section-title {
-    /* font-size: 11px; */
-    /* line-height: 16px; */
+    font-size: 18px;
+    padding-bottom: 28px;
   }
 }

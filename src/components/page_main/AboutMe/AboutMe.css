@@ -11,6 +11,7 @@
   margin-top: 66px;
   display: flex;
   justify-content: space-between;
+  gap: 50px;
 }
 
 .about-me__subtitle {
@@ -29,12 +30,83 @@
 }
 
 .about-me__link {
-  margin-top: 13px;
+  margin-top: auto;
   font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
 }
+
 .about-me__avatar {
   max-width: 270px;
   max-height: 327px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+@media (max-width: 992px) {
+  .about-me {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .about-me__subtitle {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 16px;
+  }
+
+  .about-me__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__text:first-of-type {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 20px;
+  }
+
+  .about-me__avatar {
+    max-width: 255px;
+    max-height: 307px;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-me {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .about-me__section {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .about-me__subtitle {
+    font-size: 30px;
+    line-height: 1.21;
+    margin-bottom: 20px;
+  }
+
+  .about-me__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-me__text:first-of-type {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-me__link {
+    margin-top: 43px;
+  }
+
+  .about-me__avatar {
+    max-width: 100%;
+  }
 }

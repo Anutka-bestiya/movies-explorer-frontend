@@ -1,0 +1,19 @@
+.button-close {
+  background: url(../../images/icon_close.svg) no-repeat center;
+  z-index: 3;
+
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 22px;
+  right: 0;
+}
+/* @media (max-width: 879px) {
+  .button-close {
+    background-image: url(../../images/close-icon-mobule.png);
+    width: 20px;
+    height: 20px;
+    top: -36px;
+    right: 0px;
+  }
+} */

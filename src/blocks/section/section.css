@@ -6,7 +6,14 @@
   padding: 0px 70px;
 }
 
-@media (max-width: 879px) {
+@media (max-width: 992px) {
   .section {
+    padding: 0px 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section {
+    padding: 0px 14px;
   }
 }

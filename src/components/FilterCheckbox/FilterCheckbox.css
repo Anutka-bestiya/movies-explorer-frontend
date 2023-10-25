@@ -1,0 +1,20 @@
+.filter-checkbox {
+  display: flex;
+  padding: 0 30px;
+  align-items: center;
+  justify-content: end;
+  font-size: 13px;
+}
+
+.filter-checkbox__button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 36px;
+  min-height: 20px;
+}
+
+.filter-checkbox__icon {
+  margin-right: 13px;
+}
