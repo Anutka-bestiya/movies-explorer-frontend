@@ -5,17 +5,17 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList(props) {
   const movies = props.movies;
-  const viewsLength = 12;
+  const views = props.views;
   const moviesCardList = movies => {
-    if (movies.length >= viewsLength) {
+    if (movies.length >= views) {
       // console.log(movies);
-      return movies.slice(0, viewsLength);
+      return movies.slice(0, views);
     } else {
       // console.log(movies);
       return movies;
     }
   };
-  console.log(moviesCardList(movies));
+  // console.log(moviesCardList(movies));
 
   return (
     <section className="section movies-list" aria-label="Галерея фильмов">
@@ -32,9 +32,14 @@ function MoviesCardList(props) {
           />
         ))}
       </ul>
-      {movies.length > viewsLength && (
+      {movies.length > views && (
         <div className="movies-list__more">
-          <button className="button movies-list__button" onClick={() => {}}>
+          <button
+            className="button movies-list__button"
+            onClick={() => {
+              props.handleMoreClick();
+            }}
+          >
             Ещё
           </button>
         </div>

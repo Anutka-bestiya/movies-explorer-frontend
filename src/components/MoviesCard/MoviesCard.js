@@ -38,7 +38,6 @@ function MoviesCard(props) {
           }}
         >
           <div className={movieLikeButtonClassName}>{movieLikeButtonText}</div>
-
           <img
             className="movie__image"
             src={movie.image}

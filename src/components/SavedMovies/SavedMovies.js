@@ -8,6 +8,8 @@ import SearchForm from '../SearchForm/SearchForm';
 function SavedMovies(props) {
   const location = useLocation();
   const currentUser = React.useContext(CurrentUserContext);
+  console.log(CurrentUserContext);
+
   //   const moviesList = props.movies;
 
   const movies = moviesList.filter(i => {
@@ -29,6 +31,7 @@ function SavedMovies(props) {
       <MoviesCardList
         // onMovieLike={onMovieLike}
         // onMovieDelete={onMovieDelete}
+        views={props.views}
         movies={movies}
         movieButtonClassName={props.movieButtonClassName}
         // movieSaveButton={props.movieSaveButton}

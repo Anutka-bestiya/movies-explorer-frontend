@@ -22,8 +22,10 @@ function Movies(props) {
       <MoviesCardList
         // onMovieLike={onMovieLike}
         // onMovieDelete={onMovieDelete}
+        views={props.views}
         movies={movies}
         movieButtonClassName={props.movieButtonClassName}
+        handleMoreClick={props.handleMoreClick}
         // movieSaveButton={props.movieSaveButton}
         // movieDislikeButton={props.movieDislikeButton}
       />

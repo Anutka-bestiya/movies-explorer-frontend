@@ -11,12 +11,66 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import Navigation from '../Navigation/Navigation';
-import api from '../../utils/api';
+// import api from '../../utils/api';
 // import * as auth from '../../utils/auth';
+import { useResize } from '../../utils/use-resize';
 import { LoggedInContext } from '../../contexts/LoggedInContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
+  // Используем хук определяющий масштаб экрана
+  const { isScreenSm, isScreenLg } = useResize();
+
+  // Количество отображаемых, добавляемых элементов:
+  const [views, setViews] = React.useState(12);
+
+  const defaultViews = 12;
+  const defaultViewsLg = 8;
+  const defaultViewsSm = 5;
+
+  const determiningScale = () => {
+    if (!isScreenSm) {
+      setViews(defaultViewsSm);
+    } else {
+      if (!isScreenLg) {
+        setViews(defaultViewsLg);
+      } else {
+        setViews(12);
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    determiningScale();
+  }, [isScreenSm, isScreenLg]);
+
+  // Клик по кнопке "Еще"
+  const handleMoreClick = () => {
+    if (!isScreenSm) {
+      if (views === defaultViewsSm) {
+        setViews(defaultViewsSm + 1);
+      } else {
+        setViews(views + 1);
+      }
+    } else {
+      if (!isScreenLg) {
+        if (views === defaultViewsLg) {
+          setViews(defaultViewsLg + 2);
+        } else {
+          setViews(views + 2);
+        }
+      } else {
+        {
+          if (views === defaultViews) {
+            setViews(defaultViews + 3);
+          } else {
+            setViews(views + 3);
+          }
+        }
+      }
+    }
+  };
+
   const [isLoggedIn, setIsLoggedIn] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({
     name: 'Виталий',
@@ -24,6 +78,7 @@ function App() {
     _id: '650cb2d21682f9a4ea25be39'
   });
   const [movies, setMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const [isShortCheckActive, setIsShortCheckActive] = React.useState(false);
   const [isMenuBurgerOpen, setIsMenuBurgerOpen] = React.useState(false);
 
@@ -132,12 +187,14 @@ function App() {
                 <Movies
                   // onMovieLike={onMovieLike}
                   // onMovieDelete={onMovieDelete}
+                  views={views}
                   movies={movies}
                   isShortCheckActive={isShortCheckActive}
                   handleShortCheck={handleShortCheck}
                   movieButtonClassName={movieButtonClassName}
                   buttonText="Найти"
                   buttonTextProgress="Ищем.."
+                  handleMoreClick={handleMoreClick}
                 />
               }
             />
@@ -147,7 +204,8 @@ function App() {
                 <SavedMovies
                   // onMovieLike={onMovieLike}
                   // onMovieDelete={onMovieDelete}
-                  movies={movies}
+                  views={views}
+                  movies={savedMovies}
                   isShortCheckActive={isShortCheckActive}
                   handleShortCheck={handleShortCheck}
                   movieButtonClassName={savedMovieButtonClassName}
