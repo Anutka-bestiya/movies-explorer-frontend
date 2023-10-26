@@ -215,12 +215,6 @@ function App() {
               }
             />
             <Route path="/*" element={<NotFound />} />
-            {/* <Route
-              path="*"
-              element={
-                !isLoggedIn ? <Navigate to="/" replace /> : <Navigate to="/signin" replace />
-              }
-            /> */}
           </Routes>
           <Footer />
         </div>
