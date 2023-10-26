@@ -50,3 +50,34 @@
 .login__reg-link {
   margin-left: 6px;
 }
+
+@media (max-width: 992px) {
+  .login__reg-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .login {
+    max-width: 260px;
+    margin-top: 56px;
+  }
+
+  .login__logo {
+    align-self: center;
+  }
+
+  .login__title {
+    align-self: center;
+    margin-top: 46px;
+    margin-bottom: 80px;
+  }
+
+  .login__reg-text {
+    font-size: 12px;
+  }
+
+  .login__button {
+    font-weight: 500;
+  }
+}

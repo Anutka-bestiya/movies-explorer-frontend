@@ -1,7 +1,8 @@
 .movies-list {
   padding: 0;
-  padding-top: 76px;
+  padding-top: 80px;
 }
+
 .movies-list__list {
   margin: 0;
   padding: 0;
@@ -11,6 +12,7 @@
   row-gap: 30px;
   justify-content: space-between;
 }
+
 .movies-list__more {
   padding-top: 48px;
   padding-bottom: 76px;
@@ -24,4 +26,15 @@
   background-color: #f9f9f9;
   border-radius: 6px;
   color: #000;
+}
+
+@media (max-width: 576px) {
+  .movies-list {
+    padding-top: 52px;
+    padding-bottom: 140px;
+  }
+
+  .movies-list__list {
+    row-gap: 34px;
+  }
 }

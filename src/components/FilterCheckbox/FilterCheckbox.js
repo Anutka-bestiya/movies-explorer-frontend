@@ -10,7 +10,6 @@ function FilterCheckbox(props) {
       <button
         className="button filter-checkbox__button"
         onClick={() => {
-          console.log('cl');
           props.handleShortCheck();
         }}
       >

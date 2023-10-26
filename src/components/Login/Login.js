@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 function Login(props) {
   return (
     <section className="login section">
-      <a className="link" href="/">
-        <img src={logo} alt="Логотип: Дипломный проект" className="logo login__logo" />
+      <a className="link login__logo" href="/">
+        <img src={logo} alt="Логотип: Дипломный проект" className="logo " />
       </a>
       <h1 className="title login__title">Рады видеть!</h1>
       <AuthForm
@@ -15,6 +15,7 @@ function Login(props) {
         // isLoading={isLoading}
         // errorMessage={errorMessage}
         onInfoTooltip={props.onInfoTooltip}
+        buttonClass={props.buttonClass}
         buttonTextProgress={props.buttonTextProgress}
         buttonText={props.buttonText}
       >

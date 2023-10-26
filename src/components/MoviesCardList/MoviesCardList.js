@@ -6,11 +6,21 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 function MoviesCardList(props) {
   const movies = props.movies;
   const viewsLength = 12;
+  const moviesCardList = movies => {
+    if (movies.length >= viewsLength) {
+      // console.log(movies);
+      return movies.slice(0, viewsLength);
+    } else {
+      // console.log(movies);
+      return movies;
+    }
+  };
+  console.log(moviesCardList(movies));
 
   return (
     <section className="section movies-list" aria-label="Галерея фильмов">
       <ul className="movies-list__list">
-        {movies.slice(0, viewsLength).map(movie => (
+        {moviesCardList(movies).map(movie => (
           <MoviesCard
             key={movie._id}
             //   onMovieLike={props.onMovieLike}

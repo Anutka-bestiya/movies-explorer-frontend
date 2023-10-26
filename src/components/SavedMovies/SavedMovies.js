@@ -25,6 +25,7 @@ function SavedMovies(props) {
         buttonText={props.buttonText}
         buttonTextProgress={props.buttonTextPrpgress}
       />
+      <span className="saved-movies__span"></span>
       <MoviesCardList
         // onMovieLike={onMovieLike}
         // onMovieDelete={onMovieDelete}

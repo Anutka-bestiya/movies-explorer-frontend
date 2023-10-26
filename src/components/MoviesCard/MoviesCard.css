@@ -85,3 +85,27 @@
   box-sizing: border-box;
   white-space: nowrap;
 }
+
+@media (max-width: 992px) {
+  .movie__caption {
+    padding: 25px 0 0;
+  }
+
+  .movie__title {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 576px) {
+  .movie__caption {
+    padding-top: 16px;
+  }
+
+  .movie__title {
+    font-size: 12px;
+    height: auto;
+  }
+}

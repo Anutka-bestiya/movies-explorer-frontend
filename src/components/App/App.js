@@ -42,6 +42,8 @@ function App() {
   // const location = useLocation();
   const movieButtonClassName = 'movie__like_active';
   const savedMovieButtonClassName = 'movie-saved__like_active';
+  const registerButtonClassName = '';
+  const loginButtonClassName = '';
 
   return (
     <LoggedInContext.Provider value={isLoggedIn}>
@@ -59,6 +61,7 @@ function App() {
                   title="Вход"
                   buttonText="Войти"
                   buttonTextProgress="Авторизация.."
+                  buttonClass={loginButtonClassName}
                   // onInfoTooltip={setIsInfoTooltipOpen}
                   // handleSetMessage={handleSetMessage}
                   // handleSetIsSucsess={handleSetIsSucsess}
@@ -83,6 +86,7 @@ function App() {
                   title="Регистрация"
                   buttonText="Зарегистрироваться"
                   buttonTextProgress="Регистрация.."
+                  buttonClass={registerButtonClassName}
                   // onInfoTooltip={setIsInfoTooltipOpen}
                   // handleSetMessage={handleSetMessage}
                   // handleSetIsSucsess={handleSetIsSucsess}

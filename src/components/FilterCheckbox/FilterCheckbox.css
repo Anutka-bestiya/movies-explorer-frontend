@@ -18,3 +18,26 @@
 .filter-checkbox__icon {
   margin-right: 13px;
 }
+
+@media (max-width: 992px) {
+  .filter-checkbox {
+    padding: 0 20px;
+    align-items: center;
+    justify-content: end;
+    font-size: 13px;
+  }
+
+  .filter-checkbox__button {
+    width: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .filter-checkbox {
+    position: absolute;
+    top: 120px;
+    left: 58px;
+    margin: 0 auto;
+    font-size: 11px;
+  }
+}

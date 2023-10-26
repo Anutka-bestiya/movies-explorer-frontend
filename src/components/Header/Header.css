@@ -58,7 +58,7 @@
   display: none;
   position: absolute;
   top: 15px;
-  right: 0px;
+  right: 30px;
   width: 44px;
   height: 44px;
   box-sizing: border-box;
@@ -93,12 +93,13 @@
     padding: 0 30px;
   }
 
-  .nav-is-logged_true {
-    display: none;
+  .header__menu-burger {
+    display: flex;
+    justify-content: center;
   }
 
-  .header__menu-burger {
-    display: block;
+  .nav-is-logged_true {
+    display: none;
   }
 }
 
@@ -108,9 +109,10 @@
   }
 
   .header__menu-burger {
-    min-width: 40px;
+    min-width: auto;
     width: 40px;
     height: 43px;
+    right: 13px;
   }
 
   .header__menu-burger-block,

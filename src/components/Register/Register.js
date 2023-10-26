@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 function Register(props) {
   return (
-    <section className="register section">
-      <a className="link" href="/">
-        <img src={logo} alt="Логотип: Дипломный проект" className="logo register__logo" />
+    <section className="section register">
+      <a className="link register__logo" href="/">
+        <img src={logo} alt="Логотип: Дипломный проект" className="logo" />
       </a>
       <h1 className="title register__title">Добро пожаловать!</h1>
       <AuthForm
@@ -15,6 +15,7 @@ function Register(props) {
         // isLoading={isLoading}
         // errorMessage={errorMessage}
         onInfoTooltip={props.onInfoTooltip}
+        buttonClass={props.buttonClass}
         buttonTextProgress={props.buttonTextProgress}
         buttonText={props.buttonText}
       >

@@ -1,5 +1,6 @@
 .form__button {
   min-height: 45px;
+  width: 100%;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.21;
