@@ -12,12 +12,17 @@ function MoviesCard(props) {
   const isLiked = movie.likes === currentUser._id;
 
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
-  const movieLikeButtonClassName = `button movie__like ${isLiked && props.movieButtonClassName}`;
-  // const movieSaveButton = props.movieSaveButton;
-  // const movieDislikeButton = props.movieDislikeButton;
+  const movieLikeButtonClassName = `button movie__like ${
+    isLiked ? props.movieButtonClassName : ''
+  }`;
 
-  // console.log(props.movieButtonClassName);
-  // Пересчитаем минуты в нужный формат ч и м
+  // Текст кнопки "лайка"
+  const movieLikeButtonText = `${
+    !isLiked ? 'Сохранить' : ''
+    // <div className="sr-only">Снять лайк</div>
+  }`;
+
+  // Пересчет минуты в нужный формат ч и м
   const hours = Math.floor(movie.duration / 60);
   let minutes = movie.duration % 60;
   minutes = minutes < 10 ? '0' + minutes : minutes;
@@ -32,9 +37,7 @@ function MoviesCard(props) {
             // onMovieLike(movie);
           }}
         >
-          <div className={movieLikeButtonClassName}>
-            <div className="sr-only">Снять лайк</div>
-          </div>
+          <div className={movieLikeButtonClassName}>{movieLikeButtonText}</div>
 
           <img
             className="movie__image"

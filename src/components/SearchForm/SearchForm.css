@@ -36,7 +36,7 @@
 
 .search-form__button {
   min-height: 34px;
-  min-width: 58.65px;
+  width: 58.65px;
   border-radius: 34px;
   padding: 8px 10.35px;
   font-size: 11px;

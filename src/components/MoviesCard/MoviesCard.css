@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
 }
+
 .movie__button {
   position: relative;
   border: none;
@@ -39,6 +40,7 @@
   min-width: 21px;
   opacity: 1;
 }
+
 .movie__like_active:hover {
   background: url(../../images/icon_arrow.svg) no-repeat center;
 }
@@ -60,6 +62,7 @@
   gap: 30px;
   padding: 12px 14px;
 }
+
 .movie__title {
   font-weight: 500;
   font-size: 14px;
@@ -72,6 +75,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+
 .movie__duration {
   padding: 4px 9px;
   font-size: 11px;
@@ -107,5 +111,11 @@
   .movie__title {
     font-size: 12px;
     height: auto;
+  }
+
+  .movie-saved__like_active {
+    background: url(../../images/icon_arrow.svg) no-repeat center;
+    min-width: 21px;
+    opacity: 1;
   }
 }
