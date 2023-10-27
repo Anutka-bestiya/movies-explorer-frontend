@@ -56,6 +56,11 @@
 }
 
 @media (max-width: 992px) {
+  .register {
+    margin-top: 232px;
+    margin-bottom: 232px;
+  }
+
   .register__login-text {
     font-size: 14px;
   }
@@ -65,6 +70,7 @@
   .register {
     max-width: 260px;
     margin-top: 56px;
+    margin-bottom: 30px;
   }
 
   .register__logo {
@@ -75,6 +81,10 @@
     align-self: center;
     margin-top: 46px;
     margin-bottom: 80px;
+  }
+
+  .register__inputs {
+    margin-bottom: 88px;
   }
 
   .register__login-text {

@@ -63,7 +63,7 @@
   display: flex;
   justify-content: space-between;
   gap: 30px;
-  padding: 12px 14px;
+  padding: 11px 14px;
 }
 
 .movie__title {
@@ -116,7 +116,7 @@
     height: auto;
   }
 
-  .movie-saved__like_active {
+  .movie__like_saved {
     background: url(../../images/icon_arrow.svg) no-repeat center;
     min-width: 21px;
     opacity: 1;

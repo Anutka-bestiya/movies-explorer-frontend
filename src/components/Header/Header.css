@@ -99,7 +99,7 @@
     justify-content: center;
   }
 
-  .nav-is-logged_true {
+  .header__is-logged {
     display: none;
   }
 }

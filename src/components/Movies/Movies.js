@@ -10,7 +10,7 @@ function Movies(props) {
   const movies = moviesList;
 
   return (
-    <section className="section movies" aria-label="Галерея фильмов">
+    <main className="movies" aria-label="Галерея фильмов">
       <SearchForm
         movies={movies}
         isShortCheckActive={props.isShortCheckActive}
@@ -29,7 +29,7 @@ function Movies(props) {
         // movieSaveButton={props.movieSaveButton}
         // movieDislikeButton={props.movieDislikeButton}
       />
-    </section>
+    </main>
   );
 }
 

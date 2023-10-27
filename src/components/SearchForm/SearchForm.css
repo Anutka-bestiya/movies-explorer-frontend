@@ -11,8 +11,8 @@
 }
 
 .search-form__block {
-  display: flex;
   padding: 0 19px;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   border-right: 1px solid #cbcbcb;
@@ -32,11 +32,13 @@
   background-color: #fff;
   font-size: 18px;
   color: #a0a0a0;
+  margin-right: 15px;
 }
 
 .search-form__button {
   min-height: 34px;
-  width: 58.65px;
+  min-width: 58.65px;
+  width: auto;
   border-radius: 34px;
   padding: 8px 10.35px;
   font-size: 11px;

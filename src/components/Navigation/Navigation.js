@@ -9,6 +9,8 @@ function Navigation(props) {
     <div className={` header__burger ${props.isOpen ? 'header__burger_opened' : ''}`}>
       <nav className="header__nav header__burger-nav">
         <button className=" button button-close" onClick={props.onClose}>
+          {' '}
+          type="button"
           <div className="sr-only">Закрыть</div>
         </button>
         <NavLink

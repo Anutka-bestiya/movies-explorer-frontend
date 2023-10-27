@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route /* Navigate, useNavigate, useLocation */ } from 'react-router-dom';
 import Header from '../Header/Header';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
@@ -60,12 +60,10 @@ function App() {
           setViews(views + 2);
         }
       } else {
-        {
-          if (views === defaultViews) {
-            setViews(defaultViews + 3);
-          } else {
-            setViews(views + 3);
-          }
+        if (views === defaultViews) {
+          setViews(defaultViews + 3);
+        } else {
+          setViews(views + 3);
         }
       }
     }
@@ -95,8 +93,8 @@ function App() {
 
   // const navigate = useNavigate();
   // const location = useLocation();
-  const movieButtonClassName = 'movie__like_active';
-  const savedMovieButtonClassName = 'movie-saved__like_active';
+  const movieButtonClassName = 'movie__card_like';
+  const savedMovieButtonClassName = 'movie__like_saved';
   const registerButtonClassName = '';
   const loginButtonClassName = '';
 

@@ -8,5 +8,5 @@
   font-size: 13px;
 }
 .form__input:focus-visible {
-  outline: none;
+  outline: 1px solid rgba(52, 86, 243, 0.4);
 }

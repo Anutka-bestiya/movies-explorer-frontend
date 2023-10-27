@@ -6,7 +6,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm(props) {
   return (
     <section className="section search-form">
-      <div className="search-form__block">
+      <div className="form search-form__block">
         <div className="search-form__icon"></div>
         <input
           type="text"

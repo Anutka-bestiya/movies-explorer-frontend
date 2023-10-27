@@ -4,9 +4,6 @@
   padding-bottom: 100px;
 }
 
-.techs__title {
-}
-
 .techs__subtitle {
   margin-top: 90px;
   text-align: center;
@@ -91,5 +88,11 @@
   }
   .techs__item {
     font-size: 12px;
+  }
+}
+@media (max-width: 365px) {
+  .techs__items {
+    width: 178px;
+    justify-content: start;
   }
 }

@@ -18,7 +18,7 @@ function SavedMovies(props) {
   });
 
   return (
-    <section className="section saved-movies" aria-label="Галерея фильмов">
+    <main className="saved-movies movies" aria-label="Галерея фильмов">
       <SearchForm
         movies={movies}
         isShortCheckActive={props.isShortCheckActive}
@@ -26,7 +26,7 @@ function SavedMovies(props) {
         buttonText={props.buttonText}
         buttonTextProgress={props.buttonTextPrpgress}
       />
-      <span className="saved-movies__span"></span>
+      <span className="movies__span"></span>
       <MoviesCardList
         // onMovieLike={onMovieLike}
         // onMovieDelete={onMovieDelete}
@@ -36,7 +36,7 @@ function SavedMovies(props) {
         // movieSaveButton={props.movieSaveButton}
         // movieDislikeButton={props.movieDislikeButton}
       />
-    </section>
+    </main>
   );
 }
 

@@ -12,6 +12,12 @@
   display: flex;
   justify-content: space-between;
   gap: 50px;
+  min-height: 327px;
+}
+
+.about-me__section-item {
+  display: flex;
+  flex-direction: column;
 }
 
 .about-me__subtitle {
@@ -38,7 +44,7 @@
 
 .about-me__avatar {
   max-width: 270px;
-  max-height: 327px;
+  aspect-ratio: 1.2/1;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -47,6 +53,10 @@
   .about-me {
     padding-top: 90px;
     padding-bottom: 90px;
+  }
+
+  .about-me__section {
+    min-height: 307px;
   }
 
   .about-me__subtitle {
@@ -68,7 +78,6 @@
 
   .about-me__avatar {
     max-width: 255px;
-    max-height: 307px;
   }
 }
 
@@ -103,10 +112,11 @@
   }
 
   .about-me__link {
-    margin-top: 43px;
+    margin-top: 40px;
   }
 
   .about-me__avatar {
     max-width: 100%;
+    min-height: 352px;
   }
 }

@@ -30,55 +30,53 @@ function Profile(props) {
   }
 
   return (
-    <section className="sectoin profile">
-      <h1 className="title profile__title">Привет, {currentUser.name}!</h1>
-      <AuthForm
-        // onSubmit={handleSubmit}
-        // isLoading={isLoading}
-        // errorMessage={errorMessage}
-        onInfoTooltip={props.onInfoTooltip}
-        buttonTextProgress={props.buttonTextProgress}
-        buttonText={props.buttonText}
-        buttonClass={'profile__save-button'}
-      >
-        <div className="profile__data">
-          <p className="text profile__text">Имя</p>
-          <input
-            className="text form__input profile__input form-profile-name"
-            required
-            readOnly="true"
-            id="name"
-            name="name"
-            type="name"
-            value={currentUser.name}
-            //   onChange={handleChange}
-            //   placeholder="name"
-          />
-        </div>
-        <div className="profile__data">
-          <p className="text profile__text">E-mail</p>
-          <input
-            className="text form__input profile__input form-profile-email"
-            required
-            readOnly="true"
-            id="email"
-            name="email"
-            type="email"
-            value={currentUser.email}
-            //   onChange={handleChange}
-            //   placeholder="email"
-          />
-        </div>
-        {props.children}
-      </AuthForm>
-      <Link
-        to="/signout"
-        className="link text profile__link profile__link_theme_red"
-        onClick={signOut}
-      >
-        Выйти из аккаунта
-      </Link>
-    </section>
+    <main>
+      <section className="sectoin profile">
+        <h1 className="title profile__title">Привет, {currentUser.name}!</h1>
+        <AuthForm
+          // onSubmit={handleSubmit}
+          // isLoading={isLoading}
+          // errorMessage={errorMessage}
+          onInfoTooltip={props.onInfoTooltip}
+          buttonTextProgress={props.buttonTextProgress}
+          buttonText={props.buttonText}
+          buttonClass={'profile__save-button'}
+        >
+          <div className="profile__data">
+            <p className="text profile__text">Имя</p>
+            <input
+              className="text form__input profile__input form-profile-name"
+              required
+              readOnly="true"
+              id="name"
+              name="name"
+              type="name"
+              value={currentUser.name}
+              //   onChange={handleChange}
+              //   placeholder="name"
+            />
+          </div>
+          <div className="profile__data">
+            <p className="text profile__text">E-mail</p>
+            <input
+              className="text form__input profile__input form-profile-email"
+              required
+              readOnly="true"
+              id="email"
+              name="email"
+              type="email"
+              value={currentUser.email}
+              //   onChange={handleChange}
+              //   placeholder="email"
+            />
+          </div>
+          {props.children}
+        </AuthForm>
+        <Link to="/" className="link text profile__link profile__link_theme_red" onClick={signOut}>
+          Выйти из аккаунта
+        </Link>
+      </section>
+    </main>
   );
 }
 export default Profile;

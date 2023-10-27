@@ -36,6 +36,7 @@ function MoviesCard(props) {
           onClick={() => {
             // onMovieLike(movie);
           }}
+          type="button"
         >
           <div className={movieLikeButtonClassName}>{movieLikeButtonText}</div>
           <img

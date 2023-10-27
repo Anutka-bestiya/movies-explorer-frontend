@@ -32,18 +32,19 @@ function MoviesCardList(props) {
           />
         ))}
       </ul>
-      {movies.length > views && (
-        <div className="movies-list__more">
+      <div className="movies-list__more">
+        {movies.length > views && (
           <button
             className="button movies-list__button"
             onClick={() => {
               props.handleMoreClick();
             }}
+            type="button"
           >
             Ещё
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   );
 }

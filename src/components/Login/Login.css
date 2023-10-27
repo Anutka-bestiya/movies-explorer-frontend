@@ -52,6 +52,11 @@
 }
 
 @media (max-width: 992px) {
+  .login {
+    margin-top: 232px;
+    margin-bottom: 232px;
+  }
+
   .login__reg-text {
     font-size: 14px;
   }
@@ -61,10 +66,15 @@
   .login {
     max-width: 260px;
     margin-top: 56px;
+    margin-bottom: 30px;
   }
 
   .login__logo {
     align-self: center;
+  }
+
+  .login__inputs {
+    margin-bottom: 88px;
   }
 
   .login__title {

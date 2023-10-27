@@ -4,7 +4,7 @@ function AuthForm(props) {
   return (
     <form onSubmit={props.onSubmit} className="form-auth form" noValidate>
       {props.children}
-      <span className="form__spanerror popup__error text ">{props.errorMessage}</span>
+      <span className="text form__spanerror ">{props.errorMessage}</span>
       <button
         type="submit"
         className={`form__button button ${props.buttonClass}`}

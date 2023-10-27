@@ -29,6 +29,7 @@
   margin-top: 107px;
   border-bottom: 1px solid #e8e8e8;
 }
+
 .profile__data:last-of-type {
   margin-bottom: 190px;
 }
@@ -60,4 +61,25 @@
 .profile__link_theme_red {
   font-weight: 500;
   color: #ff4062;
+}
+
+@media (max-width: 992px) {
+  .profile {
+    margin-top: 236px;
+    margin-bottom: 269px;
+  }
+
+  .profile__data:first-of-type {
+    margin-top: 80px;
+  }
+
+  .profile__data:last-of-type {
+    margin-bottom: 180px;
+  }
+}
+
+@media (max-width: 992px) {
+  .profile {
+    padding: 0 30px;
+  }
 }

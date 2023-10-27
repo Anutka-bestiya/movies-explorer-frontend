@@ -8,3 +8,9 @@
 .form__button:focus {
   border-bottom: 1px solid #3456f3;
 }
+
+@media (max-width: 576px) {
+  .form__button {
+    font-size: 12px;
+  }
+}

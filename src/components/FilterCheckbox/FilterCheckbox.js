@@ -12,6 +12,7 @@ function FilterCheckbox(props) {
         onClick={() => {
           props.handleShortCheck();
         }}
+        type="button"
       >
         <img
           className="filter-checkbox__icon"

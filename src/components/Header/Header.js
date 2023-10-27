@@ -20,13 +20,13 @@ function Header(props) {
       location.pathname === '/profile' ||
       location.pathname === '/movies' ||
       location.pathname === '/saved-movies') && (
-      <header className={`header section ${location.pathname === '/' && 'header_theme_pink'}`}>
+      <header className={`header section ${location.pathname === '/' ? 'header_theme_pink' : ''}`}>
         <a className="link" href="/">
           <img src={logo} alt="Логотип: Дипломный проект" className="logo header__logo" />
         </a>
         {!isLoggedIn ? (
           <>
-            <nav className="header__nav nav-is-logged_true">
+            <nav className="header__nav header__is-logged">
               <NavLink
                 to="/movies"
                 className={({ isActive }) =>
@@ -47,7 +47,7 @@ function Header(props) {
                 Аккаунт
                 <div
                   className={`header__icon-profile ${
-                    location.pathname !== '/' && 'header__icon-profile_theme_pink'
+                    location.pathname !== '/' ? 'header__icon-profile_theme_pink' : ''
                   }`}
                 >
                   <img
@@ -57,16 +57,19 @@ function Header(props) {
                 </div>
               </NavLink>
             </nav>
-            <button className="button header__menu-burger" onClick={setIsMenuBurgerOpen}>
+            <button
+              className="button header__menu-burger"
+              onClick={setIsMenuBurgerOpen}
+              type="button"
+            >
               <span className="header__menu-burger-block">
                 <div className="sr-only">Меню навигации</div>
               </span>
             </button>
             {props.children}
-            {/* <Navigation /> */}
           </>
         ) : (
-          <nav className="header__nav nav-is-logged_false">
+          <nav className="header__nav">
             <NavLink
               to="/signup"
               className={({ isActive }) =>

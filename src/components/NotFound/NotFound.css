@@ -23,6 +23,7 @@
   background-color: #fff;
   border: none;
   margin-bottom: 60px;
+  cursor: pointer;
 }
 
 @media (max-width: 576px) {

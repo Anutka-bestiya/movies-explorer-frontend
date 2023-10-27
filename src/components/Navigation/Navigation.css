@@ -32,6 +32,7 @@
   opacity: 1;
   transition: visibility 0s, opacity 0.3s ease-in-out;
 }
+
 .header__burger-item {
   font-weight: 500;
   font-size: 18px;
@@ -51,4 +52,11 @@
 
 .header__burger-icon-profile {
   background-color: #f9f9f9;
+}
+
+@media (max-width: 576px) {
+  .header__burger-nav {
+    padding: 144px 90px 82px;
+    gap: 20px;
+  }
 }
