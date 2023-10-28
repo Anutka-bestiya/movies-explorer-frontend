@@ -70,7 +70,7 @@
   .register {
     max-width: 260px;
     margin-top: 56px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
   }
 
   .register__logo {

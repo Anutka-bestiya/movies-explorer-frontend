@@ -93,7 +93,7 @@ function App() {
 
   // const navigate = useNavigate();
   // const location = useLocation();
-  const movieButtonClassName = 'movie__card_like';
+  const movieButtonClassName = 'movie__like_liked';
   const savedMovieButtonClassName = 'movie__like_saved';
   const registerButtonClassName = '';
   const loginButtonClassName = '';

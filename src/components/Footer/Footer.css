@@ -57,6 +57,10 @@
 }
 
 @media (max-width: 576px) {
+  .footer {
+    padding: 85px 0 14px;
+  }
+
   .footer__title,
   .footer__copyright,
   .footer__link {
@@ -64,16 +68,16 @@
   }
 
   .footer__columns {
-    margin-top: 30px;
+    margin-top: 26px;
     display: flex;
     align-items: center;
     flex-direction: column-reverse;
     gap: 30px;
   }
 
-  .footer__social-icon {
-    align-items: center;
+  .footer__social-icons {
     flex-direction: column;
+    align-items: center;
     gap: 10px;
   }
 }

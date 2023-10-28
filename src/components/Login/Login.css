@@ -54,7 +54,7 @@
 @media (max-width: 992px) {
   .login {
     margin-top: 232px;
-    margin-bottom: 232px;
+    /* margin-bottom: 232px; */
   }
 
   .login__reg-text {
