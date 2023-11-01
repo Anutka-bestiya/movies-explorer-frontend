@@ -38,17 +38,17 @@
   opacity: 1;
 }
 
-.movie__like_active {
+.movie__like_liked {
   background: url(../../images/icon_check.svg) no-repeat center;
   min-width: 21px;
   opacity: 1;
 }
 
-.movie__like_active:hover {
+.movie__like_liked:hover {
   background: url(../../images/icon_arrow.svg) no-repeat center;
 }
 
-.movie__button:hover > .movie-saved__like_active {
+.movie__button:hover > .movie__like_saved {
   background: url(../../images/icon_arrow.svg) no-repeat center;
   min-width: 21px;
   opacity: 1;
@@ -57,6 +57,7 @@
 .movie__image {
   width: 100%;
   object-fit: cover;
+  aspect-ratio: 1.79/1;
 }
 
 .movie__caption {

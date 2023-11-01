@@ -1,19 +1,18 @@
-export const BASE_URL = 'https://api.movie-anchikfyz.nomoredomainsrocks.ru';
-// export const BASE_URL = 'http://localhost:4000';
+import { BASE_URL } from './config';
 
 function checkRes(res) {
   return res.ok ? res.json() : Promise.reject(res.status);
 }
 
-export const register = (email, password) => {
+export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       // Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    credentials: 'include', // теперь куки посылаются вместе с запросом
-    body: JSON.stringify({ email, password })
+    credentials: 'include', // куки посылаются вместе с запросом
+    body: JSON.stringify({ name, email, password })
   }).then(res => {
     return checkRes(res);
   });
@@ -26,7 +25,7 @@ export const authorize = (email, password) => {
       // Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    credentials: 'include', // теперь куки посылаются вместе с запросом
+    credentials: 'include', // куки посылаются вместе с запросом
     body: JSON.stringify({ email, password })
   }).then(res => {
     return checkRes(res);
@@ -40,7 +39,7 @@ export const checkToken = () => {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    credentials: 'include' // теперь куки посылаются вместе с запросом
+    credentials: 'include' // куки посылаются вместе с запросом
   })
     .then(res => {
       return checkRes(res);

@@ -350,4 +350,25 @@ const moviesList = [
   }
 ];
 
-export { moviesList };
+const MOVIE_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+const BASE_MOVIE_URL = 'https://api.nomoreparties.co';
+// const BASE_URL = 'http://api.movie-anchikfyz.nomoredomainsrocks.ru';
+const BASE_URL = 'http://localhost:4000';
+const HEADERS = {
+  'Content-Type': 'application/json'
+};
+
+const defaultViews = 12;
+const defaultViewsLg = 8;
+const defaultViewsSm = 5;
+
+export {
+  moviesList,
+  MOVIE_URL,
+  BASE_MOVIE_URL,
+  BASE_URL,
+  HEADERS,
+  defaultViews,
+  defaultViewsLg,
+  defaultViewsSm
+};

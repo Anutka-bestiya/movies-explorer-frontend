@@ -23,6 +23,8 @@ function Profile(props) {
     auth
       .logout()
       .then(() => {
+        // setLoggedIn(false);
+        localStorage.clear();
         // props.handleLogin(false);
         navigate('/', { replace: true });
       })

@@ -6,17 +6,7 @@ import Techs from '../page_main/Techs/Techs';
 import AboutMe from '../page_main/AboutMe/AboutMe';
 import Portfolio from '../page_main/Portfolio/Portfolio';
 
-function Main(
-  {
-    //   onEditProfile,
-    //   onEditAvatar,
-    //   onAddPlace,
-    //   onCardClick,
-    //   onCardLike,
-    //   onCardDelete,
-    //   cards
-  }
-) {
+function Main() {
   return (
     <main>
       <Promo />

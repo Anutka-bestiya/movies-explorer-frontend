@@ -1,16 +1,11 @@
 import React from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function MoviesCard(props) {
   const movie = props.movie;
 
-  const currentUser = React.useContext(CurrentUserContext);
-  // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = movie.owner === currentUser._id;
-
-  // Определяем, есть ли у фильма лайк, поставленный текущим пользователем
-  const isLiked = movie.likes === currentUser._id;
-
+  // Определяем, сохранял ли пользователь фильм
+  const isLiked = props.savedMovies && props.savedMovies.find((m) => m.movieId === movie.movieId)
+  
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const movieLikeButtonClassName = `button movie__like ${
     isLiked ? props.movieButtonClassName : ''
@@ -18,8 +13,7 @@ function MoviesCard(props) {
 
   // Текст кнопки "лайка"
   const movieLikeButtonText = `${
-    !isLiked ? 'Сохранить' : ''
-    // <div className="sr-only">Снять лайк</div>
+    !isLiked? 'Сохранить' : ''
   }`;
 
   // Пересчет минуты в нужный формат ч и м
@@ -34,7 +28,9 @@ function MoviesCard(props) {
         <button
           className="movie__button"
           onClick={() => {
-            // onMovieLike(movie);
+            !isLiked 
+            ? props.onMovieLike(movie) 
+            : props.onMovieDelete(movie);
           }}
           type="button"
         >
