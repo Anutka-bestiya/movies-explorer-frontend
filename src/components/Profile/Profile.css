@@ -23,6 +23,12 @@
   justify-content: space-between;
   align-items: center;
   min-height: 47px;
+  position: relative;
+}
+
+.profile__error {
+  top: 40px;
+  left: 0;
 }
 
 .profile__data:first-of-type {
@@ -48,6 +54,21 @@
 
 .profile__save-button {
   padding: 0;
+  border-radius: 3px;
+  background-color: #3456f3;
+  color: #fff;
+  font-weight: 400;
+  font-size: 13px;
+}
+.profile__save-button:disabled {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+  cursor: default;
+}
+
+.profile__edit-button {
+  padding: 0;
+  min-height: 45px;
   background-color: #fff;
   color: #000;
   font-weight: 400;
@@ -63,10 +84,13 @@
   color: #ff4062;
 }
 
+.profile__button_not-visible {
+  display: none;
+}
+
 @media (max-width: 992px) {
   .profile {
     margin-top: 236px;
-    /* margin-bottom: 269px; */
   }
 
   .profile__data:first-of-type {
@@ -93,7 +117,12 @@
     margin-bottom: 346px;
   }
 
+  .profile__edit-button {
+    width: auto;
+  }
+
   .profile__save-button,
+  .profile__edit-button,
   .profile__link {
     font-size: 12px;
   }

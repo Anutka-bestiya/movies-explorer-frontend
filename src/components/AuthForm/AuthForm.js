@@ -1,19 +1,21 @@
 import React from 'react';
+import { LoadingContext } from '../../contexts/LoadingContext';
 
 function AuthForm(props) {
+  const isLoading = React.useContext(LoadingContext);
+
   return (
-    <form onSubmit={props.onSubmit} className="form-auth form" noValidate>
+    <form onSubmit={props.onSubmit} className='form-auth form' noValidate>
       {props.children}
-      <span className="text form__spanerror ">{props.errorMessage}</span>
       <button
-        type="submit"
+        type='submit'
         className={`form__button button ${props.buttonClass}`}
-        value="Отправить форму сейчас"
+        value='Отправить форму сейчас'
         onClick={props.onInfoTooltip}
+        disabled={isLoading || !props.isValid}
       >
-        {props.buttonText}
-        {/* {props.isLoading ? props.buttonTextProgress : props.buttonText} */}
-        <div className="sr-only">{props.buttonText}</div>
+        {isLoading ? props.buttonTextProgress : props.buttonText}
+        <div className='sr-only'>{props.buttonText}</div>
       </button>
     </form>
   );

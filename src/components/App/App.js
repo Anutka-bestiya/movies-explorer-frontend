@@ -11,10 +11,19 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import Navigation from '../Navigation/Navigation';
-import * as moviesApi from '../../utils/MoviesApi';
-import * as mainApi from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import * as moviesApi from '../../utils/moviesApi';
+import * as mainApi from '../../utils/mainApi';
 import * as auth from '../../utils/auth';
-import { defaultViews, defaultViewsLg, defaultViewsSm, BASE_MOVIE_URL } from '../../utils/config';
+import {
+  defaultViews,
+  defaultViewsLg,
+  defaultViewsSm,
+  defaultViewsGap,
+  defaultViewsLgGap,
+  defaultViewsSmGap,
+  BASE_MOVIE_URL
+} from '../../utils/config';
 import { useResize } from '../../utils/use-resize';
 import { LoadingContext } from '../../contexts/LoadingContext';
 import { LoggedInContext } from '../../contexts/LoggedInContext';
@@ -40,29 +49,31 @@ function App() {
   };
 
   React.useEffect(() => {
-    determiningScale();
+    setTimeout(() => {
+      determiningScale();
+    });
   }, [isScreenSm, isScreenLg]);
 
   // Клик по кнопке "Еще"
   const handleMoreClick = () => {
     if (!isScreenSm) {
       if (views === defaultViewsSm) {
-        setViews(defaultViewsSm + 1);
+        setViews(defaultViewsSm + defaultViewsSmGap);
       } else {
-        setViews(views + 1);
+        setViews(views + defaultViewsSmGap);
       }
     } else {
       if (!isScreenLg) {
         if (views === defaultViewsLg) {
-          setViews(defaultViewsLg + 2);
+          setViews(defaultViewsLg + defaultViewsLgGap);
         } else {
-          setViews(views + 2);
+          setViews(views + defaultViewsLgGap);
         }
       } else {
         if (views === defaultViews) {
-          setViews(defaultViews + 3);
+          setViews(defaultViews + defaultViewsGap);
         } else {
-          setViews(views + 3);
+          setViews(views + defaultViewsGap);
         }
       }
     }
@@ -72,13 +83,12 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isLoggedIn, setIsLoggedIn] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({
-    name: 'Виталий',
-    email: 'Почта пользователя',
-    _id: '650cb2d21682f9a4ea25be39'
+    name: '',
+    email: '',
+    _id: ''
   });
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
-  const [isShortCheckActive, setIsShortCheckActive] = React.useState(false);
   const [isMenuBurgerOpen, setIsMenuBurgerOpen] = React.useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [isSucsess, setIsSucsess] = React.useState(false);
@@ -87,23 +97,24 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Получение информации о пользователе
   React.useEffect(() => {
-    mainApi
-      .getUserInfo()
-      .then(user => {
-        setCurrentUser(user);
-      })
-      .catch(err => {
-        console.log(`Ошибка получения currentUser: ${err}`);
-      });
-
-      console.log(currentUser)
+    isLoggedIn &&
+      mainApi
+        .getUserInfo()
+        .then(user => {
+          setCurrentUser(user);
+        })
+        .catch(err => {
+          console.log(`Ошибка получения currentUser: ${err}`);
+        });
   }, [isLoggedIn]);
 
   // Получение фильмов при авторизации пользователя
   React.useEffect(() => {
+    setIsLoading(true);
     const movies = JSON.parse(localStorage.getItem('allMovies'));
-    if (movies === null) {
+    if (isLoggedIn && movies === null) {
       moviesApi
         .getInitialMovies()
         .then(allMovies => {
@@ -125,31 +136,27 @@ function App() {
           setMovies(allMoviesForLS);
           localStorage.setItem('allMovies', JSON.stringify(allMoviesForLS));
           console.log('Фильмы получены со стороннего ресурса и загружены в локалстораж');
-          // setIsLoading(false);
         })
         .catch(err => {
           console.log(`Ошибка получения массива movies: ${err}`);
         });
     } else {
       setMovies(movies);
-      console.log(movies);     
     }
-    
+
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-    if (savedMovies === null) {
-    mainApi
-      .getSavedMovie()
-      .then(savedMoviesForLS => {
-        setSavedMovies(savedMoviesForLS);
-        localStorage.setItem('savedMovies', JSON.stringify(savedMoviesForLS));
-        console.log(savedMovies);
-      })
-      .catch(err => {
-        console.log(`Ошибка получения массива saved movies: ${err}`);
-      });
-    } else { 
+    if (isLoggedIn && savedMovies === null) {
+      mainApi
+        .getSavedMovie()
+        .then(savedMoviesForLS => {
+          setSavedMovies(savedMoviesForLS);
+          localStorage.setItem('savedMovies', JSON.stringify(savedMoviesForLS));
+        })
+        .catch(err => {
+          console.log(`Ошибка получения массива saved movies: ${err}`);
+        });
+    } else {
       setSavedMovies(savedMovies);
-      console.log(savedMovies);
     }
     // localStorage.clear();
     setIsLoading(false);
@@ -160,14 +167,14 @@ function App() {
     auth
       .checkToken()
       .then(res => {
-        setCurrentUser(res)
+        setCurrentUser(res);
         setIsLoggedIn(true);
         navigate(location.pathname);
       })
       .catch(err => {
         console.log(`Ошибка ${err}`);
         setIsLoggedIn(false);
-        // navigate('/signin', { replace: true });
+        setCurrentUser({});
       });
   };
 
@@ -181,8 +188,8 @@ function App() {
     mainApi
       .addSavedMovie(newMovie)
       .then(movie => {
-        console.log(movie)
-        const movieForLS = movie
+        console.log(movie);
+        const movieForLS = movie;
         setSavedMovies([movieForLS, ...savedMovies]);
         return localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
       })
@@ -206,26 +213,23 @@ function App() {
       .catch(err => console.log(`Ошибка удаления Фильма: ${err}`));
   };
 
-  // Переключение чекбокса короткометражек
-  const handleShortCheck = () => {
-    if (isShortCheckActive === false) setIsShortCheckActive(true);
-    else {
-      setIsShortCheckActive(false);
-    }
-  };
-
   // вход в приложение
   const handleLogin = boolean => {
     setIsLoggedIn(boolean);
     setIsSucsess(boolean);
   };
 
-  // успех!
-  function handleSetIsSucsess() {
-    setIsSucsess(true);
+  // Сохранение данных пользователя
+  function handleSetCurrentUser({ name, email }) {
+    setCurrentUser({ name, email });
   }
 
-  // Сохранение сообщения в тултип 
+  // успех!
+  function handleSetIsSucsess(boolean) {
+    setIsSucsess(boolean);
+  }
+
+  // Сохранение сообщения в тултип
   function handleSetMessage(e) {
     setMessage(e);
   }
@@ -260,19 +264,19 @@ function App() {
     <LoadingContext.Provider value={isLoading}>
       <LoggedInContext.Provider value={isLoggedIn}>
         <CurrentUserContext.Provider value={currentUser}>
-          <div className="App page">
+          <div className='App page'>
             <Header setIsMenuBurgerOpen={setIsMenuBurgerOpen}>
               <Navigation isOpen={isMenuBurgerOpen} onClose={closeMenuBurger} />
             </Header>
             <Routes>
               <Route
-                path="/signin"
+                path='/signin'
                 element={
                   <Login
-                    name="login"
-                    title="Вход"
-                    buttonText="Войти"
-                    buttonTextProgress="Авторизация.."
+                    name='login'
+                    title='Вход'
+                    buttonText='Войти'
+                    buttonTextProgress='Авторизация..'
                     buttonClass={loginButtonClassName}
                     onInfoTooltip={setIsInfoTooltipOpen}
                     handleSetMessage={handleSetMessage}
@@ -285,96 +289,113 @@ function App() {
                       onClose={handleCloseInfoTooltip}
                       isSucsess={isSucsess}
                       message={message}
-                      nav="/"
+                      nav='/movies'
                     />
                   </Login>
                 }
               />
               <Route
-                path="/signup"
+                path='/signup'
                 element={
                   <Register
-                    name="register"
-                    title="Регистрация"
-                    buttonText="Зарегистрироваться"
-                    buttonTextProgress="Регистрация.."
+                    name='register'
+                    title='Регистрация'
+                    buttonText='Зарегистрироваться'
+                    buttonTextProgress='Регистрация..'
                     buttonClass={registerButtonClassName}
                     onInfoTooltip={setIsInfoTooltipOpen}
                     handleSetMessage={handleSetMessage}
+                    handleSetCurrentUser={handleSetCurrentUser}
                     handleSetIsSucsess={handleSetIsSucsess}
                     handleSetIsLoading={handleSetIsLoading}
+                    handleLogin={handleLogin}
                   >
                     <InfoTooltip
                       isOpen={isInfoTooltipOpen}
                       onClose={handleCloseInfoTooltip}
                       isSucsess={isSucsess}
                       message={message}
-                      nav="/"
+                      nav='/movies'
                     />
                   </Register>
                 }
               />
-              <Route path="/" element={<Main />} />
+              <Route path='/' element={<Main />} />
               <Route
-                path="/profile"
+                path='/profile'
                 element={
-                  <Profile
-                    name="profile"
-                    title="Обновление данных"
-                    buttonText="Редактировать"
-                    buttonTextProgress="Сохранение.."
-                    onInfoTooltip={setIsInfoTooltipOpen}
-                    handleSetMessage={handleSetMessage}
-                    handleSetIsSucsess={handleSetIsSucsess}
-                    handleSetIsLoading={handleSetIsLoading}
-                  >
-                    <InfoTooltip
-                    isOpen={isInfoTooltipOpen}
-                    onClose={handleCloseInfoTooltip}
-                    isSucsess={isSucsess}
-                    message={message}
-                    nav="/profile"
-                    />
-                  </Profile>
-                }
-              />
-              <Route
-                path="/movies"
-                element={
-                  <Movies
-                    onMovieLike={handleAddSavedMovie}
-                    onMovieDelete={handleDeleteSavedMovie}
-                    views={views}
-                    movies={movies}
-                    savedMovies={savedMovies}
-                    isShortCheckActive={isShortCheckActive}
-                    handleShortCheck={handleShortCheck}
-                    movieButtonClassName={movieButtonClassName}
-                    buttonText="Найти"
-                    buttonTextProgress="Ищем.."
-                    handleMoreClick={handleMoreClick}
+                  <ProtectedRoute
+                    element={
+                      <Profile
+                        tokenCheck={tokenCheck}
+                        name='profile'
+                        title='Обновление данных'
+                        buttonText='Сохранить'
+                        buttonTextProgress='Сохранение..'
+                        handleSetCurrentUser={handleSetCurrentUser}
+                        onInfoTooltip={setIsInfoTooltipOpen}
+                        handleSetMessage={handleSetMessage}
+                        handleSetIsSucsess={handleSetIsSucsess}
+                        handleSetIsLoading={handleSetIsLoading}
+                        handleLogin={handleLogin}
+                      >
+                        <InfoTooltip
+                          isOpen={isInfoTooltipOpen}
+                          onClose={handleCloseInfoTooltip}
+                          isSucsess={isSucsess}
+                          message={message}
+                          nav='/profile'
+                        />
+                      </Profile>
+                    }
                   />
                 }
               />
               <Route
-                path="/saved-movies"
+                path='/movies'
                 element={
-                  <SavedMovies
-                    onMovieLike={handleAddSavedMovie}
-                    onMovieDelete={handleDeleteSavedMovie}
-                    views={views}
-                    movies={movies}
-                    savedMovies={savedMovies}
-                    isShortCheckActive={isShortCheckActive}
-                    handleShortCheck={handleShortCheck}
-                    movieButtonClassName={savedMovieButtonClassName}
-                    buttonText="Найти"
-                    buttonTextProgress="Ищем.."
-                    handleMoreClick={handleMoreClick}
+                  <ProtectedRoute
+                    element={
+                      <Movies
+                        tokenCheck={tokenCheck}
+                        onMovieLike={handleAddSavedMovie}
+                        onMovieDelete={handleDeleteSavedMovie}
+                        views={views}
+                        movies={movies}
+                        savedMovies={savedMovies}
+                        movieButtonClassName={movieButtonClassName}
+                        buttonText='Найти'
+                        buttonTextProgress='Ищем..'
+                        handleMoreClick={handleMoreClick}
+                        handleSetIsLoading={handleSetIsLoading}
+                      />
+                    }
                   />
                 }
               />
-              <Route path="/*" element={<NotFound />} />
+              <Route
+                path='/saved-movies'
+                element={
+                  <ProtectedRoute
+                    element={
+                      <SavedMovies
+                        tokenCheck={tokenCheck}
+                        onMovieLike={handleAddSavedMovie}
+                        onMovieDelete={handleDeleteSavedMovie}
+                        views={views}
+                        movies={movies}
+                        savedMovies={savedMovies}
+                        movieButtonClassName={savedMovieButtonClassName}
+                        buttonText='Найти'
+                        buttonTextProgress='Ищем..'
+                        handleMoreClick={handleMoreClick}
+                        handleSetIsLoading={handleSetIsLoading}
+                      />
+                    }
+                  />
+                }
+              />
+              <Route path='/*' element={<NotFound />} />
             </Routes>
             <Footer />
           </div>

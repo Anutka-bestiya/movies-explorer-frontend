@@ -3,11 +3,8 @@ import { BASE_URL, HEADERS } from './config';
 function checkRes(res) {
   if (res.ok) {
     return res.json();
-  } else {
-    return res.json().then(res => {
-      return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    });
   }
+  return Promise.reject(res.status);
 }
 
 //запрос и изменение данных о пользователе

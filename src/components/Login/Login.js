@@ -2,62 +2,40 @@ import React from 'react';
 import AuthForm from '../AuthForm/AuthForm';
 import * as auth from '../../utils/auth';
 import logo from '../../images/logo.png';
-import { LoadingContext } from '../../contexts/LoadingContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { useValidate } from '../../utils/use-validate';
 
 function Login(props) {
-
-  const isLoading = React.useContext(LoadingContext);
   const navigate = useNavigate();
-  const [formValue, setFormValue] = React.useState({
-    email: '',
-    password: ''
-  });
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value
-    });
-  };
+  React.useEffect(() => {
+    resetForm({}, {}, true);
+  }, [resetForm]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    const formErrorSpan = document.querySelector('.form__spanerror');
-
     props.handleSetIsLoading(true);
-    if (!formValue.email || !formValue.password) {
-      props.handleSetMessage('Что-то пошло не так! Попробуйте ещё раз.');
-      formErrorSpan.classList.add('popup__error_visible');
-      props.onInfoTooltip(true);
-      return;
-    }
+
     auth
       .authorize(formValue.email, formValue.password)
       .then(data => {
         if (data) {
           props.handleSetIsSucsess(true);
-          setFormValue({ email: '', password: '' });
-          navigate('/', { replace: true });
-          // localStorage.setItem('jwt', data.token);
+          navigate('/movies', { replace: true });
           props.handleLogin(true);
         } else {
-          formErrorSpan.classList.add('popup__error_visible');
           props.onInfoTooltip(true);
         }
       })
       .catch(err => {
         console.log(err);
         if (err === 400 || 401) {
-          props.handleSetMessage('Что-то пошло не так! Попробуйте ещё раз.');
+          props.handleSetMessage('При авторизации произошла ошибка.');
           if (err === 400) {
-            setErrorMessage('400 - не передано одно из полей');
+            props.handleSetMessage('400 - не передано одно из полей');
           }
-          setErrorMessage('401 - пользователь с email не найден ');
-          formErrorSpan.classList.add('popup__error_visible');
+          props.handleSetMessage('401 - Вы ввели неправильный логин или пароль.');
           props.onInfoTooltip(true);
           return;
         }
@@ -69,49 +47,61 @@ function Login(props) {
 
   return (
     <main>
-      <section className="login section">
-        <a className="link login__logo" href="/">
-          <img src={logo} alt="Логотип: Дипломный проект" className="logo " />
+      <section className='login section'>
+        <a className='link login__logo' href='/'>
+          <img src={logo} alt='Логотип: Дипломный проект' className='logo ' />
         </a>
-        <h1 className="title login__title">Рады видеть!</h1>
+        <h1 className='title login__title'>Рады видеть!</h1>
         <AuthForm
           onSubmit={handleSubmit}
-          isLoading={isLoading}
+          isValid={isValid}
           errorMessage={errorMessage}
           onInfoTooltip={props.onInfoTooltip}
           buttonClass={props.buttonClass}
           buttonTextProgress={props.buttonTextProgress}
           buttonText={props.buttonText}
         >
-          <div className="login__inputs">
-            <p className="text login__text">E-mail</p>
+          <div className='login__inputs'>
+            <p className='text login__text'>E-mail</p>
             <input
-              className="text form__input login__input form-login-email"
+              className='text form__input login__input form-login-email'
               required
-              id="email"
-              name="email"
-              type="email"
-                value={formValue.email}
-                onChange={handleChange}
-              placeholder="email"
+              id='email'
+              name='email'
+              type='email'
+              minLength='2'
+              maxLength='40'
+              value={formValue.email || ''}
+              onChange={handleChange}
+              placeholder='Email'
             />
-            <p className="text login__text">Пароль</p>
+            <span className={`text error login__error ${isValid.email}&& error_visible`}>
+              {errorMessage.email}
+            </span>
+          </div>
+          <div className='login__inputs'>
+            <p className='text login__text'>Пароль</p>
             <input
-              className="text form__input login__input form-login-password"
+              className='text form__input login__input form-login-password'
               required
-              id="password"
-              name="password"
-              type="password"
-                value={formValue.password}
-                onChange={handleChange}
-              placeholder="password"
+              id='password'
+              name='password'
+              type='password'
+              minLength='8'
+              maxLength='40'
+              value={formValue.password || ''}
+              onChange={handleChange}
+              placeholder='password'
             />
+            <span className={`text error login__error ${isValid.password}&& error_visible`}>
+              {errorMessage.password}
+            </span>
           </div>
         </AuthForm>
         {props.children}
-        <p className="text login__reg-text">
+        <p className='text login__reg-text'>
           Ещё не зарегистрированы?
-          <Link to="/signup" className="link login__reg-link">
+          <Link to='/signup' className='link login__reg-link'>
             Регистрация
           </Link>
         </p>

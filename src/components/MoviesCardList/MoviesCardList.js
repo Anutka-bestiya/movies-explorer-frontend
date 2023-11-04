@@ -11,9 +11,7 @@ function MoviesCardList(props) {
   const views = props.views;
   
   const moviesCardList = (movies) => {
-    if (location.pathname === '/saved-movies'){ return props.savedMovies} else
-  if ((location.pathname !== '/saved-movies') ||
-    (movies !== null)) {
+    if (movies !== null) {
       if (movies.length >= views) {
               return movies.slice(0, views);
       } else {

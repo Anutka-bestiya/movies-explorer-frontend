@@ -6,20 +6,21 @@ import icon_check_on from '../../images/icon_check_on.svg';
 
 function FilterCheckbox(props) {
   return (
-    <div className="filter-checkbox">
+    <div className='filter-checkbox'>
       <button
-        className="button filter-checkbox__button"
+        className='button filter-checkbox__button'
         onClick={() => {
           props.handleShortCheck();
+          // props.handleSubmit();
         }}
-        type="button"
+        type='button'
       >
         <img
-          className="filter-checkbox__icon"
+          className='filter-checkbox__icon'
           src={props.isShortCheckActive ? icon_check_on : icon_check_off}
-          alt="Чекбокс поиска короткометражных фильмов"
+          alt='Чекбокс поиска короткометражных фильмов'
         />
-        <div className="sr-only">Чекбокс поиска короткометражных фильмов</div>
+        <div className='sr-only'>Чекбокс поиска короткометражных фильмов</div>
       </button>
       Короткометражки
     </div>
