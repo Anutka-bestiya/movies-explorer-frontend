@@ -255,12 +255,6 @@ function App() {
     setIsMenuBurgerOpen(false);
   }
 
-  // Именование кнопок
-  const movieButtonClassName = 'movie__like_liked';
-  const savedMovieButtonClassName = 'movie__like_saved';
-  const registerButtonClassName = '';
-  const loginButtonClassName = '';
-
   return (
     <LoadingContext.Provider value={isLoading}>
       <LoggedInContext.Provider value={isLoggedIn}>
@@ -281,7 +275,7 @@ function App() {
                       title='Вход'
                       buttonText='Войти'
                       buttonTextProgress='Авторизация..'
-                      buttonClass={loginButtonClassName}
+                      buttonClass=''
                       onInfoTooltip={setIsInfoTooltipOpen}
                       handleSetMessage={handleSetMessage}
                       handleSetIsSucsess={handleSetIsSucsess}
@@ -306,7 +300,7 @@ function App() {
                       title='Регистрация'
                       buttonText='Зарегистрироваться'
                       buttonTextProgress='Регистрация..'
-                      buttonClass={registerButtonClassName}
+                      buttonClass=''
                       onInfoTooltip={setIsInfoTooltipOpen}
                       handleSetMessage={handleSetMessage}
                       handleSetCurrentUser={handleSetCurrentUser}
@@ -367,7 +361,7 @@ function App() {
                           views={views}
                           movies={movies}
                           savedMovies={savedMovies}
-                          movieButtonClassName={movieButtonClassName}
+                          movieButtonClassName='movie__like_liked'
                           buttonText='Найти'
                           buttonTextProgress='Ищем..'
                           handleMoreClick={handleMoreClick}
@@ -389,7 +383,7 @@ function App() {
                           views={views}
                           movies={movies}
                           savedMovies={savedMovies}
-                          movieButtonClassName={savedMovieButtonClassName}
+                          movieButtonClassName='movie__like_saved'
                           buttonText='Найти'
                           buttonTextProgress='Ищем..'
                           handleMoreClick={handleMoreClick}
