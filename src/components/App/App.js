@@ -12,8 +12,8 @@ import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import Navigation from '../Navigation/Navigation';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import * as moviesApi from '../../utils/moviesApi';
-import * as mainApi from '../../utils/mainApi';
+import * as moviesApi from '../../utils/MoviesApi';
+import * as mainApi from '../../utils/MainApi';
 import * as auth from '../../utils/auth';
 import {
   defaultViews,

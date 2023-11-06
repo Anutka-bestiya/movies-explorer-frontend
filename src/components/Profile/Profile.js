@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import AuthForm from '../AuthForm/AuthForm';
 import * as auth from '../../utils/auth';
-import * as mainApi from '../../utils/mainApi';
+import * as mainApi from '../../utils/MainApi';
 import { useValidate } from '../../utils/use-validate';
 
 function Profile(props) {
