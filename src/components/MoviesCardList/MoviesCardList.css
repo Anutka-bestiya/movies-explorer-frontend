@@ -28,6 +28,10 @@
   color: #000;
 }
 
+.movies__text {
+  text-align: center;
+}
+
 @media (max-width: 992px) {
   .movies-list__list {
     grid-template-columns: repeat(2, minmax(291px, 1fr));

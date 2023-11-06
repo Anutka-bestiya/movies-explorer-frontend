@@ -28,6 +28,7 @@ import { useResize } from '../../utils/use-resize';
 import { LoadingContext } from '../../contexts/LoadingContext';
 import { LoggedInContext } from '../../contexts/LoggedInContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import Preloader from '../Preloader/Preloader';
 
 function App() {
   // Используем хук определяющий масштаб экрана
@@ -264,141 +265,145 @@ function App() {
     <LoadingContext.Provider value={isLoading}>
       <LoggedInContext.Provider value={isLoggedIn}>
         <CurrentUserContext.Provider value={currentUser}>
-          <div className='App page'>
-            <Header setIsMenuBurgerOpen={setIsMenuBurgerOpen}>
-              <Navigation isOpen={isMenuBurgerOpen} onClose={closeMenuBurger} />
-            </Header>
-            <Routes>
-              <Route
-                path='/signin'
-                element={
-                  <Login
-                    name='login'
-                    title='Вход'
-                    buttonText='Войти'
-                    buttonTextProgress='Авторизация..'
-                    buttonClass={loginButtonClassName}
-                    onInfoTooltip={setIsInfoTooltipOpen}
-                    handleSetMessage={handleSetMessage}
-                    handleSetIsSucsess={handleSetIsSucsess}
-                    handleSetIsLoading={handleSetIsLoading}
-                    handleLogin={handleLogin}
-                  >
-                    <InfoTooltip
-                      isOpen={isInfoTooltipOpen}
-                      onClose={handleCloseInfoTooltip}
-                      isSucsess={isSucsess}
-                      message={message}
-                      nav='/movies'
+          {isLoading ? (
+            <Preloader />
+          ) : (
+            <div className='App page'>
+              <Header setIsMenuBurgerOpen={setIsMenuBurgerOpen}>
+                <Navigation isOpen={isMenuBurgerOpen} onClose={closeMenuBurger} />
+              </Header>
+              <Routes>
+                <Route
+                  path='/signin'
+                  element={
+                    <Login
+                      name='login'
+                      title='Вход'
+                      buttonText='Войти'
+                      buttonTextProgress='Авторизация..'
+                      buttonClass={loginButtonClassName}
+                      onInfoTooltip={setIsInfoTooltipOpen}
+                      handleSetMessage={handleSetMessage}
+                      handleSetIsSucsess={handleSetIsSucsess}
+                      handleSetIsLoading={handleSetIsLoading}
+                      handleLogin={handleLogin}
+                    >
+                      <InfoTooltip
+                        isOpen={isInfoTooltipOpen}
+                        onClose={handleCloseInfoTooltip}
+                        isSucsess={isSucsess}
+                        message={message}
+                        nav='/movies'
+                      />
+                    </Login>
+                  }
+                />
+                <Route
+                  path='/signup'
+                  element={
+                    <Register
+                      name='register'
+                      title='Регистрация'
+                      buttonText='Зарегистрироваться'
+                      buttonTextProgress='Регистрация..'
+                      buttonClass={registerButtonClassName}
+                      onInfoTooltip={setIsInfoTooltipOpen}
+                      handleSetMessage={handleSetMessage}
+                      handleSetCurrentUser={handleSetCurrentUser}
+                      handleSetIsSucsess={handleSetIsSucsess}
+                      handleSetIsLoading={handleSetIsLoading}
+                      handleLogin={handleLogin}
+                    >
+                      <InfoTooltip
+                        isOpen={isInfoTooltipOpen}
+                        onClose={handleCloseInfoTooltip}
+                        isSucsess={isSucsess}
+                        message={message}
+                        nav='/movies'
+                      />
+                    </Register>
+                  }
+                />
+                <Route path='/' element={<Main />} />
+                <Route
+                  path='/profile'
+                  element={
+                    <ProtectedRoute
+                      element={
+                        <Profile
+                          tokenCheck={tokenCheck}
+                          name='profile'
+                          title='Обновление данных'
+                          buttonText='Сохранить'
+                          buttonTextProgress='Сохранение..'
+                          handleSetCurrentUser={handleSetCurrentUser}
+                          onInfoTooltip={setIsInfoTooltipOpen}
+                          handleSetMessage={handleSetMessage}
+                          handleSetIsSucsess={handleSetIsSucsess}
+                          handleSetIsLoading={handleSetIsLoading}
+                          handleLogin={handleLogin}
+                        >
+                          <InfoTooltip
+                            isOpen={isInfoTooltipOpen}
+                            onClose={handleCloseInfoTooltip}
+                            isSucsess={isSucsess}
+                            message={message}
+                            nav='/profile'
+                          />
+                        </Profile>
+                      }
                     />
-                  </Login>
-                }
-              />
-              <Route
-                path='/signup'
-                element={
-                  <Register
-                    name='register'
-                    title='Регистрация'
-                    buttonText='Зарегистрироваться'
-                    buttonTextProgress='Регистрация..'
-                    buttonClass={registerButtonClassName}
-                    onInfoTooltip={setIsInfoTooltipOpen}
-                    handleSetMessage={handleSetMessage}
-                    handleSetCurrentUser={handleSetCurrentUser}
-                    handleSetIsSucsess={handleSetIsSucsess}
-                    handleSetIsLoading={handleSetIsLoading}
-                    handleLogin={handleLogin}
-                  >
-                    <InfoTooltip
-                      isOpen={isInfoTooltipOpen}
-                      onClose={handleCloseInfoTooltip}
-                      isSucsess={isSucsess}
-                      message={message}
-                      nav='/movies'
-                    />
-                  </Register>
-                }
-              />
-              <Route path='/' element={<Main />} />
-              <Route
-                path='/profile'
-                element={
-                  <ProtectedRoute
-                    element={
-                      <Profile
-                        tokenCheck={tokenCheck}
-                        name='profile'
-                        title='Обновление данных'
-                        buttonText='Сохранить'
-                        buttonTextProgress='Сохранение..'
-                        handleSetCurrentUser={handleSetCurrentUser}
-                        onInfoTooltip={setIsInfoTooltipOpen}
-                        handleSetMessage={handleSetMessage}
-                        handleSetIsSucsess={handleSetIsSucsess}
-                        handleSetIsLoading={handleSetIsLoading}
-                        handleLogin={handleLogin}
-                      >
-                        <InfoTooltip
-                          isOpen={isInfoTooltipOpen}
-                          onClose={handleCloseInfoTooltip}
-                          isSucsess={isSucsess}
-                          message={message}
-                          nav='/profile'
+                  }
+                />
+                <Route
+                  path='/movies'
+                  element={
+                    <ProtectedRoute
+                      element={
+                        <Movies
+                          tokenCheck={tokenCheck}
+                          onMovieLike={handleAddSavedMovie}
+                          onMovieDelete={handleDeleteSavedMovie}
+                          views={views}
+                          movies={movies}
+                          savedMovies={savedMovies}
+                          movieButtonClassName={movieButtonClassName}
+                          buttonText='Найти'
+                          buttonTextProgress='Ищем..'
+                          handleMoreClick={handleMoreClick}
+                          handleSetIsLoading={handleSetIsLoading}
                         />
-                      </Profile>
-                    }
-                  />
-                }
-              />
-              <Route
-                path='/movies'
-                element={
-                  <ProtectedRoute
-                    element={
-                      <Movies
-                        tokenCheck={tokenCheck}
-                        onMovieLike={handleAddSavedMovie}
-                        onMovieDelete={handleDeleteSavedMovie}
-                        views={views}
-                        movies={movies}
-                        savedMovies={savedMovies}
-                        movieButtonClassName={movieButtonClassName}
-                        buttonText='Найти'
-                        buttonTextProgress='Ищем..'
-                        handleMoreClick={handleMoreClick}
-                        handleSetIsLoading={handleSetIsLoading}
-                      />
-                    }
-                  />
-                }
-              />
-              <Route
-                path='/saved-movies'
-                element={
-                  <ProtectedRoute
-                    element={
-                      <SavedMovies
-                        tokenCheck={tokenCheck}
-                        onMovieLike={handleAddSavedMovie}
-                        onMovieDelete={handleDeleteSavedMovie}
-                        views={views}
-                        movies={movies}
-                        savedMovies={savedMovies}
-                        movieButtonClassName={savedMovieButtonClassName}
-                        buttonText='Найти'
-                        buttonTextProgress='Ищем..'
-                        handleMoreClick={handleMoreClick}
-                        handleSetIsLoading={handleSetIsLoading}
-                      />
-                    }
-                  />
-                }
-              />
-              <Route path='/*' element={<NotFound />} />
-            </Routes>
-            <Footer />
-          </div>
+                      }
+                    />
+                  }
+                />
+                <Route
+                  path='/saved-movies'
+                  element={
+                    <ProtectedRoute
+                      element={
+                        <SavedMovies
+                          tokenCheck={tokenCheck}
+                          onMovieLike={handleAddSavedMovie}
+                          onMovieDelete={handleDeleteSavedMovie}
+                          views={views}
+                          movies={movies}
+                          savedMovies={savedMovies}
+                          movieButtonClassName={savedMovieButtonClassName}
+                          buttonText='Найти'
+                          buttonTextProgress='Ищем..'
+                          handleMoreClick={handleMoreClick}
+                          handleSetIsLoading={handleSetIsLoading}
+                        />
+                      }
+                    />
+                  }
+                />
+                <Route path='/*' element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </div>
+          )}
         </CurrentUserContext.Provider>
       </LoggedInContext.Provider>
     </LoadingContext.Provider>

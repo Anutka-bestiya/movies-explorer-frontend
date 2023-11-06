@@ -4,7 +4,7 @@ import { LoggedInContext } from '../../contexts/LoggedInContext';
 
 const ProtectedRoute = ({ element: Component }) => {
   const isLoggedIn = React.useContext(LoggedInContext);
-  return isLoggedIn === true ? Component : <Navigate to='/' replace />;
+  return isLoggedIn ? Component : <Navigate to='/' replace />;
 };
 
 export default ProtectedRoute;

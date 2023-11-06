@@ -10,7 +10,7 @@ function Login(props) {
   const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
 
   React.useEffect(() => {
-    resetForm({}, {}, true);
+    resetForm({}, {}, false);
   }, [resetForm]);
 
   function handleSubmit(e) {

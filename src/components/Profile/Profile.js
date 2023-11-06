@@ -13,7 +13,7 @@ function Profile(props) {
 
   React.useEffect(() => {
     if (currentUser) {
-      resetForm(currentUser, {}, true);
+      resetForm(currentUser, {}, false);
     }
   }, [currentUser, resetForm]);
 
@@ -21,11 +21,6 @@ function Profile(props) {
   const buttonSubmitEdit = document.querySelector('.profile__save-button');
   const inputProfileName = document.querySelector('.form-profile-name');
   const inputProfileEmail = document.querySelector('.form-profile-email');
-
-  // Проверка токена
-  React.useEffect(() => {
-    props.tokenCheck(); // проверка токена
-  }, []);
 
   // Блокировка кнопки сохранения данных профиля
   React.useEffect(() => {

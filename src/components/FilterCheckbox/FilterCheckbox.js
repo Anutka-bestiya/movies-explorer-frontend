@@ -1,6 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import icon_check_off from '../../images/icon_check_off.svg';
 import icon_check_on from '../../images/icon_check_on.svg';
 
@@ -9,10 +7,7 @@ function FilterCheckbox(props) {
     <div className='filter-checkbox'>
       <button
         className='button filter-checkbox__button'
-        onClick={() => {
-          props.handleShortCheck();
-          // props.handleSubmit();
-        }}
+        onClick={props.handleShortCheck}
         type='button'
       >
         <img

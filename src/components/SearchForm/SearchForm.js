@@ -1,81 +1,99 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SHORT_DURATION } from '../../utils/config';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { LoadingContext } from '../../contexts/LoadingContext';
+import { useValidate } from '../../utils/use-validate';
 
 function SearchForm(props) {
   const location = useLocation();
   const isLoading = React.useContext(LoadingContext);
   const [isShortCheckActive, setIsShortCheckActive] = React.useState(false);
-  const [formValue, setFormValue] = React.useState('');
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
 
-  const filtred = JSON.parse(localStorage.getItem('filtredMovies'));
-  const shortCheckActive = JSON.parse(localStorage.getItem('isShortCheckActive'));
-  const formValueFiltred = JSON.parse(localStorage.getItem('formValue'));
-
+  // Получение значений прошлого поиска для movies
   React.useEffect(() => {
-    if (location.pathname === '/movies' && filtred !== null) {
-      props.handleSetFiltredMovies(filtred);
-      setIsShortCheckActive(shortCheckActive);
-      setFormValue(formValueFiltred);
-    } else {
-      setIsShortCheckActive(isShortCheckActive);
-      props.handleSetFiltredMovies(props.movies);
+    if (location.pathname === '/movies' && localStorage.filtredMovies) {
+      const filteredMov = JSON.parse(localStorage.getItem('filtredMovies'));
+      const shortCheckActive = JSON.parse(localStorage.getItem('isShortCheckActive'));
+      const formValueFiltred = JSON.parse(localStorage.getItem('formValue'));
+
+      if (filteredMov !== null) {
+        props.handleSetFiltredMovies(filteredMov);
+        setIsShortCheckActive(shortCheckActive);
+        resetForm({ search: formValueFiltred });
+      }
     }
   }, []);
 
-  // Переключение чекбокса короткометражек
-  const handleShortCheck = () => {
-    isShortCheckActive ? setIsShortCheckActive(false) : setIsShortCheckActive(true);
-  };
-
-  // Поиск фильмов
-  const handleSubmit = e => {
-    e.preventDefault();
-    props.handleSetIsLoading(true);
-
-    const filtredCheckMovies = isShortCheckActive
-      ? props.movies.filter(m => m.duration <= SHORT_DURATION)
-      : props.movies;
-
-    const filtred = filtredCheckMovies.filter(movie => {
-      return (
-        movie.nameRU.toLowerCase().includes(formValue.toLowerCase()) ||
-        movie.nameEN.toLowerCase().includes(formValue.toLowerCase())
-      );
+  // Фильтрация поискового запроса
+  const startFilter = useCallback((movies, isShortCheckActive, formValue) => {
+    const filtredMovies = movies.filter(movie => {
+      if (formValue !== undefined) {
+        const searchMovie =
+          movie.nameRU.toLowerCase().includes(formValue.toLowerCase()) ||
+          movie.nameEN.toLowerCase().includes(formValue.toLowerCase());
+        return isShortCheckActive ? movie.duration <= SHORT_DURATION && searchMovie : searchMovie;
+      } else {
+        return isShortCheckActive ? movie.duration <= SHORT_DURATION && movie : movie;
+      }
     });
 
-    props.handleSetFiltredMovies(filtred);
+    if (filtredMovies.length === 0) {
+      props.handleSetFiltredMoviesError('Ничего не найдено');
+    } else {
+      props.handleSetFiltredMoviesError('');
+    }
 
-    location.pathname === '/movies' &&
-      localStorage.setItem('filtredMovies', JSON.stringify(filtred));
-    location.pathname === '/movies' &&
+    props.handleSetFiltredMovies(filtredMovies);
+
+    if (location.pathname === '/movies') {
+      localStorage.setItem('filtredMovies', JSON.stringify(filtredMovies));
       localStorage.setItem('isShortCheckActive', JSON.stringify(isShortCheckActive));
-    location.pathname === '/movies' && localStorage.setItem('formValue', JSON.stringify(formValue));
+      localStorage.setItem('formValue', JSON.stringify(formValue));
+    }
+  }, []);
 
+  // Поиск фильмов
+  const handleSearch = formValue => {
+    props.handleSetIsLoading(true);
+    startFilter(props.movies, isShortCheckActive, formValue);
     props.handleSetIsLoading(false);
   };
 
-  // Получение значения поля поиска
-  const handleChange = e => {
-    const { value } = e.target;
+  // Переключение чекбокса короткометражек
+  const handleShortCheck = () => {
+    if (formValue) {
+      props.handleSetIsLoading(true);
+      if (isShortCheckActive) {
+        setIsShortCheckActive(false);
+      } else {
+        setIsShortCheckActive(true);
+      }
+      startFilter(props.movies, !isShortCheckActive, formValue.search);
+      props.handleSetIsLoading(false);
+    }
+  };
 
-    setFormValue(value);
+  // Нажатие на кнопку поиск
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (formValue) {
+      handleSearch(formValue.search);
+    }
   };
 
   return (
     <section className='section search-form'>
-      <div className='form search-form__block'>
+      <form className='form search-form__block'>
         <div className='search-form__icon'></div>
         <input
           type='text'
           className='text form__input search-form__input'
           required
-          id='search-form'
-          name='search-form'
-          value={formValue}
+          id='search'
+          name='search'
+          value={formValue.search || ''}
           onChange={handleChange}
           placeholder='Фильм'
         />
@@ -83,18 +101,18 @@ function SearchForm(props) {
           type='submit'
           className='form__button button search-form__button'
           value='Отправить форму сейчас'
-          onClick={handleSubmit}
+          onClick={e => {
+            handleSubmit(e);
+          }}
         >
-          {/* {props.buttonText} */}
           {isLoading ? props.buttonTextProgress : props.buttonText}
           <div className='sr-only'>{props.buttonText}</div>
         </button>
-      </div>
-      <FilterCheckbox
-        isShortCheckActive={isShortCheckActive}
-        handleShortCheck={handleShortCheck}
-        handleSubmit={handleSubmit}
-      />
+      </form>
+      <FilterCheckbox isShortCheckActive={isShortCheckActive} handleShortCheck={handleShortCheck} />
+      <span className={`text error search-form__error ${isValid.name}&& error_visible`}>
+        {errorMessage.search}
+      </span>
     </section>
   );
 }

@@ -9,24 +9,26 @@ function MoviesCardList(props) {
   const location = useLocation();
 
   const views = props.views;
-  
-  const moviesCardList = (movies) => {
+
+  const moviesCardList = movies => {
     if (movies !== null) {
       if (movies.length >= views) {
-              return movies.slice(0, views);
+        return movies.slice(0, views);
       } else {
-               return movies;
+        return movies;
       }
-    } 
+    }
   };
-  
+
   return (
-    <section className="section movies-list" aria-label="Галерея фильмов">
+    <section className='section movies-list' aria-label='Галерея фильмов'>
       {isLoading ? (
         <Preloader />
+      ) : props.movies === null ? (
+        <p className='title movies__text'>{props.errorMessage}</p>
       ) : (
         <>
-          <ul className="movies-list__list">
+          <ul className='movies-list__list'>
             {moviesCardList(props.movies).map(movie => (
               <MoviesCard
                 key={movie.movieId}
@@ -41,14 +43,14 @@ function MoviesCardList(props) {
               />
             ))}
           </ul>
-          <div className="movies-list__more">
-          {(location.pathname !== '/saved-movies') && (props.movies.length > views) && (
+          <div className='movies-list__more'>
+            {location.pathname !== '/saved-movies' && props.movies.length > views && (
               <button
-                className="button movies-list__button"
+                className='button movies-list__button'
                 onClick={() => {
                   props.handleMoreClick();
                 }}
-                type="button"
+                type='button'
               >
                 Ещё
               </button>

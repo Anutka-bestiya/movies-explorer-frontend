@@ -9,7 +9,7 @@ function Register(props) {
   const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
 
   React.useEffect(() => {
-    resetForm({}, {}, true);
+    resetForm({}, {}, false);
   }, [resetForm]);
 
   // Нажатие на кнопку Сохранить, сохраняет данные формы
@@ -74,7 +74,7 @@ function Register(props) {
               minLength='2'
               maxLength='40'
               pattern='^[А-Яа-яЁёa-zA-Z\s]+$'
-              value={formValue.name}
+              value={formValue.name || ''}
               onChange={handleChange}
               placeholder='name'
             />
@@ -92,7 +92,7 @@ function Register(props) {
               type='email'
               minLength='2'
               maxLength='40'
-              value={formValue.email}
+              value={formValue.email || ''}
               onChange={handleChange}
               placeholder='email'
             />
@@ -110,7 +110,7 @@ function Register(props) {
               type='password'
               minLength='8'
               maxLength='40'
-              value={formValue.password}
+              value={formValue.password || ''}
               onChange={handleChange}
               placeholder='password'
             />

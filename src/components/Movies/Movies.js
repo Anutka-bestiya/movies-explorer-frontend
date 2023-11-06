@@ -6,9 +6,14 @@ import SearchForm from '../SearchForm/SearchForm';
 
 function Movies(props) {
   const [filtredMovies, setFiltredMovies] = React.useState([]);
+  const [filtredMoviesError, setFiltredMoviesError] = React.useState('');
   const isLoading = React.useContext(LoadingContext);
+
   const handleSetFiltredMovies = movies => {
     setFiltredMovies(movies);
+  };
+  const handleSetFiltredMoviesError = err => {
+    setFiltredMoviesError(err);
   };
 
   return (
@@ -19,9 +24,13 @@ function Movies(props) {
         buttonTextProgress={props.buttonTextProgress}
         handleSetIsLoading={props.handleSetIsLoading}
         filtredMovies={filtredMovies}
+        filtredMoviesError={filtredMoviesError}
         handleSetFiltredMovies={handleSetFiltredMovies}
+        handleSetFiltredMoviesError={handleSetFiltredMoviesError}
       />
-      <span className='error movies__error'></span>
+      <span className={`error movies__span ${filtredMovies !== ''}&& error_visible`}>
+        {filtredMoviesError}
+      </span>
       {isLoading ? (
         <Preloader />
       ) : (
