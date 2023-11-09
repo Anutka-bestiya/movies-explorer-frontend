@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import AuthForm from '../AuthForm/AuthForm';
 import * as auth from '../../utils/auth';
 import logo from '../../images/logo.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { LoggedInContext } from '../../contexts/LoggedInContext';
 import { useValidate } from '../../utils/use-validate';
 
 function Login(props) {
+  const isLoggedIn = React.useContext(LoggedInContext);
   const navigate = useNavigate();
   const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
 
@@ -45,7 +47,9 @@ function Login(props) {
       });
   }
 
-  return (
+  return isLoggedIn ? (
+    <Navigate to='/' replace />
+  ) : (
     <main>
       <section className='login section'>
         <a className='link login__logo' href='/'>
@@ -71,6 +75,7 @@ function Login(props) {
               type='email'
               minLength='2'
               maxLength='40'
+              pattern='[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\.[a-z]{2,}'
               value={formValue.email || ''}
               onChange={handleChange}
               placeholder='Email'

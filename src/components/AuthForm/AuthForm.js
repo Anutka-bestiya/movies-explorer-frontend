@@ -5,7 +5,7 @@ function AuthForm(props) {
   const isLoading = React.useContext(LoadingContext);
 
   return (
-    <form onSubmit={props.onSubmit} className='form-auth form' noValidate>
+    <form onSubmit={(e) =>{props.onSubmit(e)}} className='form-auth form' noValidate>
       {props.children}
       <button
         type='submit'

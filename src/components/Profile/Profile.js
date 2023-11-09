@@ -116,7 +116,7 @@ function Profile(props) {
               type='name'
               minLength='2'
               maxLength='40'
-              pattern='^[А-Яа-яЁёa-zA-Z\s]+$'
+              pattern='^[А-Яа-яЁёa-zA-Z0-9\s\-]+$'
               value={formValue.name || ''}
               onChange={handleChange}
               placeholder='Имя'
@@ -137,6 +137,7 @@ function Profile(props) {
               type='email'
               minLength='2'
               maxLength='40'
+              pattern='[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\.[a-z]{2,}'
               value={formValue.email || ''}
               onChange={handleChange}
               placeholder='Email'

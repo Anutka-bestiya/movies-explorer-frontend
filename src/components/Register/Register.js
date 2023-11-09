@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import AuthForm from '../AuthForm/AuthForm';
 import logo from '../../images/logo.png';
-import { Link } from 'react-router-dom';
+import { LoggedInContext } from '../../contexts/LoggedInContext';
 import * as auth from '../../utils/auth';
 import { useValidate } from '../../utils/use-validate';
 
 function Register(props) {
+  const isLoggedIn = React.useContext(LoggedInContext);
   const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
 
   React.useEffect(() => {
@@ -47,7 +49,9 @@ function Register(props) {
       });
   }
 
-  return (
+  return isLoggedIn ? (
+    <Navigate to='/' replace />
+  ) : (
     <main>
       <section className='section register'>
         <a className='link register__logo' href='/'>
@@ -73,7 +77,7 @@ function Register(props) {
               type='name'
               minLength='2'
               maxLength='40'
-              pattern='^[А-Яа-яЁёa-zA-Z\s]+$'
+              pattern='^[А-Яа-яЁёa-zA-Z0-9\s\-]+$'
               value={formValue.name || ''}
               onChange={handleChange}
               placeholder='name'
@@ -92,6 +96,7 @@ function Register(props) {
               type='email'
               minLength='2'
               maxLength='40'
+              pattern='[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\.[a-z]{2,}'
               value={formValue.email || ''}
               onChange={handleChange}
               placeholder='email'

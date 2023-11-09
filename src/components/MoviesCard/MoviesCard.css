@@ -44,9 +44,9 @@
   opacity: 1;
 }
 
-.movie__like_liked:hover {
+/* .movie__like_liked:hover {
   background: url(../../images/icon_arrow.svg) no-repeat center;
-}
+} */
 
 .movie__button:hover > .movie__like_saved {
   background: url(../../images/icon_arrow.svg) no-repeat center;
@@ -115,6 +115,10 @@
   .movie__title {
     font-size: 12px;
     height: auto;
+  }
+
+  .movie__like {
+    opacity: 1;
   }
 
   .movie__like_saved {

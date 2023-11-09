@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LoggedInContext } from '../../contexts/LoggedInContext';
 
 import logo from '../../images/logo.png';
@@ -17,9 +17,9 @@ function Header(props) {
       location.pathname === '/movies' ||
       location.pathname === '/saved-movies') && (
       <header className={`header section ${location.pathname === '/' ? 'header_theme_pink' : ''}`}>
-        <a className="link" href="/">
+        <Link to='/' className='link'>        
           <img src={logo} alt="Логотип: Дипломный проект" className="logo header__logo" />
-        </a>
+        </Link>
         {isLoggedIn ? (
           <>
             <nav className="header__nav header__is-logged">
