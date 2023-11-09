@@ -7,14 +7,12 @@ function Navigation(props) {
 
   return (
     <div className={` header__burger ${props.isOpen ? 'header__burger_opened' : ''}`}>
-      <nav className="header__nav header__burger-nav">
-        <button className=" button button-close" onClick={props.onClose}>
-          {' '}
-          type="button"
-          <div className="sr-only">Закрыть</div>
+      <nav className='header__nav header__burger-nav'>
+        <button className=' button button-close' type='button' onClick={props.onClose}>
+          <div className='sr-only'>Закрыть</div>
         </button>
         <NavLink
-          to="/"
+          to='/'
           className={({ isActive }) =>
             `link text header__burger-item ${isActive ? 'header__burger-item_active' : ''}`
           }
@@ -23,7 +21,7 @@ function Navigation(props) {
           Главная
         </NavLink>
         <NavLink
-          to="/movies"
+          to='/movies'
           className={({ isActive }) =>
             `link text header__burger-item ${isActive ? 'header__burger-item_active' : ''}`
           }
@@ -32,7 +30,7 @@ function Navigation(props) {
           Фильмы
         </NavLink>
         <NavLink
-          to="/saved-movies"
+          to='/saved-movies'
           className={({ isActive }) =>
             `link text header__burger-item ${isActive ? 'header__burger-item_active' : ''}`
           }
@@ -41,13 +39,13 @@ function Navigation(props) {
           Сохранённые фильмы
         </NavLink>
         <NavLink
-          to="/profile"
-          className="link header__burger-item text header__profile header__burger-profile"
+          to='/profile'
+          className='link header__burger-item text header__profile header__burger-profile'
           onClick={props.onClose}
         >
           Аккаунт
-          <div className="header__icon-profile header__burger-icon-profile">
-            <img src={icon_main} alt="Иконка профиля" />
+          <div className='header__icon-profile header__burger-icon-profile'>
+            <img src={icon_main} alt='Иконка профиля' />
           </div>
         </NavLink>
       </nav>

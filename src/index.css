@@ -22,6 +22,8 @@
 @import url(./blocks/form/__input/form__input.css);
 @import url(./blocks/form/__input/_type/form__input_type_error.css);
 @import url(./blocks/form/__button/form__button.css);
+@import url(./blocks/error/error.css);
+@import url(./blocks/error/_visible/error_visible.css);
 
 /*Preloader*/
 @import url(./components/Preloader/Preloader.css);

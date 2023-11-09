@@ -1,4 +1,5 @@
 .register {
+  width: 100vh;
   margin-top: 70px;
   padding: 0;
   max-width: 396px;
@@ -17,15 +18,24 @@
 }
 
 .register__inputs {
-  min-height: 335px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  position: relative;
+}
+
+.register__error {
+  top: 60px;
+  left: 0;
+}
+
+.register__inputs:last-of-type {
+  margin-bottom: 70px;
 }
 
 .register__input {
   letter-spacing: 0.02em;
+  margin-bottom: 16px;
 }
 
 .register__text {
@@ -57,8 +67,8 @@
 
 @media (max-width: 992px) {
   .register {
-    margin-top: 232px;
-    margin-bottom: 232px;
+    margin-top: 132px;
+    margin-bottom: 0;
   }
 
   .register__login-text {
@@ -70,7 +80,7 @@
   .register {
     max-width: 260px;
     margin-top: 56px;
-    /* margin-bottom: 30px; */
+    margin-bottom: 0;
   }
 
   .register__logo {
@@ -83,8 +93,12 @@
     margin-bottom: 80px;
   }
 
-  .register__inputs {
-    margin-bottom: 88px;
+  .register__inputs:last-of-type {
+    margin-bottom: 159px;
+  }
+
+  .register__input {
+    margin-bottom: 20px;
   }
 
   .register__login-text {

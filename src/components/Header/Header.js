@@ -1,8 +1,6 @@
 import React from 'react';
-import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
-import Navigation from '../Navigation/Navigation';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LoggedInContext } from '../../contexts/LoggedInContext';
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import logo from '../../images/logo.png';
 import icon_profile from '../../images/icon_profile.svg';
@@ -11,8 +9,6 @@ import icon_main from '../../images/icon_main.svg';
 function Header(props) {
   const isLoggedIn = React.useContext(LoggedInContext);
   const setIsMenuBurgerOpen = props.setIsMenuBurgerOpen;
-  //   const currentUser = React.useContext(CurrentUserContext);
-  //   const navigate = useNavigate();
   const location = useLocation();
 
   return (
@@ -21,10 +17,10 @@ function Header(props) {
       location.pathname === '/movies' ||
       location.pathname === '/saved-movies') && (
       <header className={`header section ${location.pathname === '/' ? 'header_theme_pink' : ''}`}>
-        <a className="link" href="/">
+        <Link to='/' className='link'>        
           <img src={logo} alt="Логотип: Дипломный проект" className="logo header__logo" />
-        </a>
-        {!isLoggedIn ? (
+        </Link>
+        {isLoggedIn ? (
           <>
             <nav className="header__nav header__is-logged">
               <NavLink

@@ -1,4 +1,5 @@
 .login {
+  width: 100vh;
   margin-top: 70px;
   padding: 0;
   max-width: 396px;
@@ -17,15 +18,24 @@
 }
 
 .login__inputs {
-  min-height: 335px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  position: relative;
+}
+
+.login__error {
+  top: 60px;
+  left: 0;
+}
+
+.login__inputs:last-of-type {
+  margin-bottom: 70px;
 }
 
 .login__input {
   letter-spacing: 0.02em;
+  margin-bottom: 16px;
 }
 
 .login__text {
@@ -51,10 +61,14 @@
   margin-left: 6px;
 }
 
+.login__button {
+  font-weight: 500;
+}
+
 @media (max-width: 992px) {
   .login {
     margin-top: 232px;
-    /* margin-bottom: 232px; */
+    margin-bottom: 0;
   }
 
   .login__reg-text {
@@ -66,15 +80,11 @@
   .login {
     max-width: 260px;
     margin-top: 56px;
-    margin-bottom: 30px;
+    margin-bottom: 0;
   }
 
   .login__logo {
     align-self: center;
-  }
-
-  .login__inputs {
-    margin-bottom: 88px;
   }
 
   .login__title {
@@ -83,11 +93,15 @@
     margin-bottom: 80px;
   }
 
-  .login__reg-text {
-    font-size: 12px;
+  .login__inputs:last-of-type {
+    margin-bottom: 88px;
   }
 
-  .login__button {
-    font-weight: 500;
+  .register__input {
+    margin-bottom: 20px;
+  }
+
+  .login__reg-text {
+    font-size: 12px;
   }
 }
