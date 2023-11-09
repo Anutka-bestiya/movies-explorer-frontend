@@ -1,7 +1,7 @@
 const MOVIE_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 const BASE_MOVIE_URL = 'https://api.nomoreparties.co';
-// const BASE_URL = 'https://api.movie-anchikfyz.nomoredomainsrocks.ru';
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://api.movie-anchikfyz.nomoredomainsrocks.ru';
+// const BASE_URL = 'http://localhost:3001';
 const HEADERS = {
   'Content-Type': 'application/json'
 };
